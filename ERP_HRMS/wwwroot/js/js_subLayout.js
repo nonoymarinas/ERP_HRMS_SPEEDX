@@ -32,7 +32,7 @@
 
     //click all equipment main menu, function from all equipments
     const jsMainMenuAllEmployeeSubLi = document.querySelector('.jsMainMenuAllEmployeeSubLi');
-    jsMainMenuAllEmployeeSubLi.addEventListener('click', allEquipments)
+    jsMainMenuAllEmployeeSubLi.addEventListener('click', clickMainMenuAllEmployee)
 
     //click user profile footer icon
     const jsUserProfileFooterMenuIcon = document.querySelector('.jsUserProfileFooterMenuIcon');
@@ -79,14 +79,21 @@ async function clickMainMenuDashboard(){
 
 async function clickMenuHomeIcon() {
     const jsSublayout01ContentSubCont = document.querySelector('.jsSublayout01ContentSubCont');
-    const view = await fetchData.viewData('/Home/HomePage');
+    const view = await fetchData.viewData('/Home/MainPage');
 
     const jsHomeMainCont = view.querySelector('.jsHomeMainCont');
+    console.log(jsHomeMainCont)
     jsSublayout01ContentSubCont.innerHTML = '';
     jsSublayout01ContentSubCont.appendChild(jsHomeMainCont);
 
-    //click new equipment icon, this function is located at js_home
-    await newEquipmentIconMenu()
+}
+
+async function clickMainMenuNewEmployee() {
+
+}
+
+async function clickMainMenuAllEmployee() {
+
 }
 
 function clickMainMenuLiToogleDisplay(e) {
