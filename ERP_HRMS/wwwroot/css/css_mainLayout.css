@@ -1,4 +1,9 @@
 ﻿* {
     --headerHeight: 60px;
     --headerFooter: 60px;
+    font-family: Poppins,SansSerif,Verdana, Geneva, Tahoma;
+}
+body {
+    margin-top: var(--headerHeight);
+    margin-bottom: var(--headerFooter);
 }

@@ -26,11 +26,11 @@
     jsMainMenuHomeLi.addEventListener('click', clickMenuHomeIcon)
 
    
-    //click new equipment main menu
+    //click new employee main menu
     const jsMainMenuNewEmployeeSubLi = document.querySelector('.jsMainMenuNewEmployeeSubLi');
     jsMainMenuNewEmployeeSubLi.addEventListener('click', clickMainMenuNewEmployee)
 
-    //click all equipment main menu, function from all equipments
+    //click all employee main menu
     const jsMainMenuAllEmployeeSubLi = document.querySelector('.jsMainMenuAllEmployeeSubLi');
     jsMainMenuAllEmployeeSubLi.addEventListener('click', clickMainMenuAllEmployee)
 
@@ -69,7 +69,7 @@ async function clickMainMenuUserProfile(){
 async function clickMainMenuDashboard(){
     const jsSublayout01ContentSubCont = document.querySelector('.jsSublayout01ContentSubCont');
 
-    const view = await fetchData.viewData('/Dashboards/Mainpage');
+    const view = await fetchData.viewData('/DashBoard/MainPage');
 
     const jsDashboardMainCont = view.querySelector('.jsDashboardMainCont');
     jsSublayout01ContentSubCont.innerHTML = '';
@@ -86,10 +86,18 @@ async function clickMenuHomeIcon() {
     jsSublayout01ContentSubCont.innerHTML = '';
     jsSublayout01ContentSubCont.appendChild(jsHomeMainCont);
 
+    await homePage();
 }
 
 async function clickMainMenuNewEmployee() {
+    const jsSublayout01ContentSubCont = document.querySelector('.jsSublayout01ContentSubCont');
+    const view = await fetchData.viewData('/WorkersInformation/MainPage');
 
+    const jsHomeMainCont = view.querySelector('.jsWorkersInfoMainCont');
+    jsSublayout01ContentSubCont.innerHTML = '';
+    jsSublayout01ContentSubCont.appendChild(jsHomeMainCont);
+
+    await newEmployee();
 }
 
 async function clickMainMenuAllEmployee() {
