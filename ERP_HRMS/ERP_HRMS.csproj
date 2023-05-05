@@ -15,4 +15,8 @@
     <ProjectReference Include="..\BusinessModel\BusinessModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\icon\alert\" />
+  </ItemGroup>
+
 </Project>

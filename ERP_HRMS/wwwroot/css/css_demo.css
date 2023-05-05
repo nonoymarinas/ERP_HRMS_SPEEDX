@@ -1,0 +1,93 @@
+﻿
+.st0 {
+    fill: #cccaca;
+    stroke: #FF7F00;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st1 {
+    fill: #fff;
+    stroke: #444;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+.st1:hover {
+    fill: #4478f2;
+    stroke: none;
+   
+}
+.st2 {
+    fill: none;
+    stroke: #007FFF;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st3 {
+    fill: none;
+    stroke: #0066CC;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st4 {
+    fill: none;
+    stroke: #0066CC;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st5 {
+    fill: none;
+    stroke: #FF7F00;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st6 {
+    fill: none;
+    stroke: #FF7FBF;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st7 {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.st8 {
+    fill: #0024ff;
+}
+.roads {
+    stroke: none;
+}
+.phase-1 {
+    fill: #444;
+}
+
+.phase-2a {
+    fill: #4478f2;
+}
+.phase-2b {
+    fill: #FF7FBF;
+}

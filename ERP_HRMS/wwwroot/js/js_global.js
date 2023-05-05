@@ -16,7 +16,7 @@ function validate(targetElement, regex) {
 }
 
 function isNullOrWhiteSpace(str) {
-    return str == null || str.replace(/\s/g, '').length < 1;
+    return str == null || str.toString().replace(/\s/g, '').length < 1;
 }
 
 const alertMessages = {
@@ -43,35 +43,35 @@ const alertContainer = {
         iconClassName: 'alert-header-icon-success',
         colorClassName: 'color-success',
         headerText: 'Success..',
-        imageSrc: "/images/icon_global/check-solid.svg"
+        imageSrc: "/icon/alert/check-solid.svg"
     },
 
     errorAlert: {
         iconImageClassName: 'alert-header-icon-error',
         colorClassName: 'color-error',
         headerText: 'Error message..',
-        imageSrc: "/images/icon_global/xmark-solid.svg"
+        imageSrc: "/icon/alert/xmark-solid.svg"
     },
 
     warningAlert: {
         iconImageClassName: 'alert-header-icon-warning',
         colorClassName: 'color-warning',
         headerText: 'Warning..',
-        imageSrc: "/images/icon_global/triangle-exclamation-solid.svg"
+        imageSrc: "/icon/alert/triangle-exclamation-solid.svg"
     },
 
     criticalAlert: {
         iconImageClassName: 'alert-header-icon-critical',
         colorClassName: 'color-critical',
         headerText: 'Critical..',
-        imageSrc: "/images/icon_global/triangle-exclamation-solid.svg"
+        imageSrc: "/icon/alert/triangle-exclamation-solid.svg"
     },
 
     infolAlert: {
         iconImageClassName: 'alert-header-icon-info',
         colorClassName: 'color-info',
         headerText: 'Information...',
-        imageSrc: "/images/icon_global/info-circle-light.svg"
+        imageSrc: "/icon/alert/info-circle-light.svg"
     }
 }
 
@@ -93,7 +93,7 @@ const alertCustom = {
                                         <p class="alert-paragraph-ok jsAlertParagraphOk"></p>
                                     </div>
                                     <div class="alert-footer-cont-ok">
-                                        <button class="alert-button-ok jsAlertButtonOk">Ok</button>
+                                        <button class="alert-button-ok jsAlertButtonOk">OK</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -183,7 +183,7 @@ const fetchData = {
 
         return dataResult
     },
-    postViewData: async function (url,options) {
+    postViewData: async function (url, options) {
         return await fetch(url, options).then(function (res) {
             if (res.ok) {
                 return res.text()
@@ -481,10 +481,34 @@ const dateFormat = {
 
 }
 
-let cssSpinner= {
+let cssSpinner = {
     spinnerType1Html: function () {
         const htmlString = `<div class="spinner-main-cont spinnerType1MainCont"><div class="lds-roller jsLdsRollerSpinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>`;
         const spinnerType1MainCont = new DOMParser().parseFromString(htmlString, 'text/html').querySelector('.spinnerType1MainCont');
         return spinnerType1MainCont;
     }
+}
+
+function formatDateTime(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let strTime = hours + ':' + minutes + ' ' + ampm;
+    return (date.getFullYear() + "/" + date.getMonth() + 1) + "/" + date.getDate() + "/" + "  " + strTime;
+}
+
+function formatDate(date) {
+    let day = date.getDate();
+    let month = parseInt(date.getMonth()) + 1
+    if (day <= 9) {
+        day = '0' + day
+    }
+    if (month <= 9) {
+        month = '0' + month
+    }
+
+    return (date.getFullYear() + "-" + month + "-" + day)
 }

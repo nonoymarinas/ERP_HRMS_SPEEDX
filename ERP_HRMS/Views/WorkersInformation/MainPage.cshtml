@@ -7,32 +7,33 @@
         </div>
          <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Personal Information</h2>
-            <button class="workerinfo-save-btn">Save</button>
+            <button class="workerinfo-save-btn jsWorkerInfoSaveBtn">Save</button>
+            <button class="workerinfo-edit-btn disable-btn jsWorkerInfoEditBtn">Edit</button>
+            <button class="workerinfo-cancel-btn disable-btn jsWorkerInfoCancelBtn">Cancel</button>
         </div>
-        <div class="workerinfo-item-main-cont">
+        <div class="workerinfo-item-main-cont jsWorkerInfoItemPersInfoMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">First Name :</label>
-                <input class="workerinfo-item-input" />
+                <input name="FirstName" class="workerinfo-item-input jsFirstName required" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Middle Name :</label>
-                <input class="workerinfo-item-input" />
+                <input name="MiddleName" class="workerinfo-item-input jsMiddleName required" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Last Name :</label>
-                <input class="workerinfo-item-input" />
+                <input name="LastName" class="workerinfo-item-input jsLastName required" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Birth Day :</label>
-                <input type="date" class="workerinfo-item-input" />
+                <input name="DateOfBirth" type="date" class="workerinfo-item-input jsDateOfBirth required" />
             </div>
-           
         </div>
          <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Benefits</h2>
-            <button class="workerinfo-save-btn">Save</button>
+            <button class="workerinfo-save-btn jsWorkerBenifitsSaveBtn">Save</button>
         </div>
-         <div class="workerinfo-item-main-cont">
+        <div class="workerinfo-item-main-cont jsWorkerInfoItemBenifitsMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">SSS No :</label>
                 <input class="workerinfo-item-input" />
