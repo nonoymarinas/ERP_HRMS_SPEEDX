@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessModel
 {
-	public class ParamPersonalInfoModels
+	public class ParamPersonalInfoModel
 	{
 		public int MasterPersonID { get; set; }
 		public string? FirstName { get; set; }

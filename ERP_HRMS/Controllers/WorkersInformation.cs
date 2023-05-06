@@ -21,16 +21,53 @@ namespace ERP_HRMS.Controllers
         }
 
         [Route("save-personal-information")]
-        async public Task<IActionResult> SavePersonalInfo(ParamPersonalInfoModels persInfo) {
-            WorkersInformationLogic dataLogic = new(_connection, persInfo);
+        async public Task<IActionResult> SavePersonalInfo(ParamPersonalInfoModel persInfo) {
+            PersonalInformationLogic dataLogic = new(_connection, persInfo);
             return Json(await dataLogic.SavePersonalInfo());
         }
 
 		[Route("update-personal-information")]
-		async public Task<IActionResult> UpdatePersonalInfo(ParamPersonalInfoModels persInfo)
+		async public Task<IActionResult> UpdatePersonalInfo(ParamPersonalInfoModel persInfo)
 		{
-			WorkersInformationLogic dataLogic = new(_connection, persInfo);
+			PersonalInformationLogic dataLogic = new(_connection, persInfo);
 			return Json(await dataLogic.UpdatePersonalInfo());
 		}
+
+		[Route("save-benifits")]
+		async public Task<IActionResult> SaveBenifits(ParamBenifitsModel benifits)
+		{
+			WorkersBenifitsLogic dataLogic = new(_connection, benifits);
+			return Json(await dataLogic.SaveBenifits());
+		}
+
+		[Route("update-benifits")]
+		async public Task<IActionResult> UpdateBenifits(ParamBenifitsModel benifits)
+		{
+			WorkersBenifitsLogic dataLogic = new(_connection, benifits);
+			return Json(await dataLogic.UpdateBenifits());
+		}
+
+
+		[Route("save-contacts")]
+		async public Task<IActionResult> SaveContacts(ParamContactModel contacts)
+		{
+			WorkersContactsLogic dataLogic = new(_connection, contacts);
+			return Json(await dataLogic.SaveContacts());
+		}
+
+		[Route("update-contacts")]
+		async public Task<IActionResult> UpdateContacts(ParamContactModel contacts)
+		{
+			WorkersContactsLogic dataLogic = new(_connection, contacts);
+			return Json(await dataLogic.UpdateContacts());
+		}
+
+		[Route("save-compensation")]
+		async public Task<IActionResult> SaveCompensation(ParamCompensationModel compensation)
+		{
+			WorkersCompensationLogic dataLogic = new(_connection, compensation);
+			return Json(await dataLogic.SaveCompensation());
+		}
 	}
+
 }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessModel
 {
-	
-	public interface ISavePersonalInfo
+	public interface ISaveContacts
 	{
-		public Task<ReturnSavePersonalInfoModels> SavePersonalInfo();
+		public Task<ReturnSaveContactModel> SaveContacts();
 	}
 }

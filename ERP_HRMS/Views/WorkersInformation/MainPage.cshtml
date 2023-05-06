@@ -5,90 +5,103 @@
             <h2 class="workerinfo-title-text">Workers Information Sheet</h2>
             <h2 class="workerinfo-title-close">&times;</h2>
         </div>
-         <div class="workerinfo-persinfo-title-cont">
+        <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Personal Information</h2>
-            <button class="workerinfo-save-btn jsWorkerInfoSaveBtn">Save</button>
-            <button class="workerinfo-edit-btn disable-btn jsWorkerInfoEditBtn">Edit</button>
-            <button class="workerinfo-cancel-btn disable-btn jsWorkerInfoCancelBtn">Cancel</button>
+            <button class="workerinfo-btn jsWorkerInfoSaveBtn">Save</button>
+            <button class="disable-btn jsWorkerInfoEditBtn">Edit</button>
+            <button class="disable-btn jsWorkerInfoCancelBtn">Cancel</button>
         </div>
         <div class="workerinfo-item-main-cont jsWorkerInfoItemPersInfoMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">First Name :</label>
-                <input name="FirstName" class="workerinfo-item-input jsFirstName required" />
+                <input name="FirstName" class="workerinfo-item-input jsFirstName validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Middle Name :</label>
-                <input name="MiddleName" class="workerinfo-item-input jsMiddleName required" />
+                <input name="MiddleName" class="workerinfo-item-input jsMiddleName validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Last Name :</label>
-                <input name="LastName" class="workerinfo-item-input jsLastName required" />
+                <input name="LastName" class="workerinfo-item-input jsLastName validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Birth Day :</label>
-                <input name="DateOfBirth" type="date" class="workerinfo-item-input jsDateOfBirth required" />
+                <input name="DateOfBirth" type="date" class="workerinfo-item-input jsDateOfBirth validate" />
             </div>
         </div>
-         <div class="workerinfo-persinfo-title-cont">
+        <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Benefits</h2>
-            <button class="workerinfo-save-btn jsWorkerBenifitsSaveBtn">Save</button>
+            <button class="workerinfo-btn jsBenifitsSaveBtn">Save</button>
+            <button class="disable-btn jsBenifitsEditBtn">Edit</button>
+            <button class="disable-btn jsBenifitsCancelBtn">Cancel</button>
         </div>
         <div class="workerinfo-item-main-cont jsWorkerInfoItemBenifitsMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">SSS No :</label>
-                <input class="workerinfo-item-input" />
+                <input name="SSSNumber" class="workerinfo-item-input jsSSSNumber validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Pag-ibig No :</label>
-                <input class="workerinfo-item-input" />
+                <input name="PagIbigNumber" class="workerinfo-item-input jsPagIbigNumber validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Philhealth No :</label>
-                <input class="workerinfo-item-input" />
+                <input name="PhilHealthNumber" class="workerinfo-item-input jsPhilHealthNumber validate" />
             </div>
-           
+
         </div>
-         <div class="workerinfo-persinfo-title-cont">
+        <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Contact</h2>
-            <button class="workerinfo-save-btn">Save</button>
+            <button class="workerinfo-btn jsContactSaveBtn">Save</button>
+            <button class="disable-btn jsContactEditBtn">Edit</button>
+            <button class="disable-btn jsContactCancelBtn">Cancel</button>
         </div>
-         <div class="workerinfo-item-main-cont">
+        <div class="workerinfo-item-main-cont jsWorkerInfoItemContactMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Mobile No :</label>
-                <input class="workerinfo-item-input" />
+                <input name="MobileNumber" class="workerinfo-item-input jsMobileNumber validate" />
             </div>
             <div class="workerinfo-item-cont">
-                <label class="workerinfo-item-label">Mobile No :</label>
-                <input class="workerinfo-item-input" />
+                <label class="workerinfo-item-label">Landline No :</label>
+                <input name="LandlineNumber" class="workerinfo-item-input jsLandlineNumber validate" />
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Email Add :</label>
-                <input class="workerinfo-item-input" />
+                <input name="EmailAddress" class="workerinfo-item-input jsEmailAddress validate" />
             </div>
-           
+
         </div>
-         <div class="workerinfo-persinfo-title-cont">
-            <h2 class="workerinfo-sub-title-text">Employment</h2>
-            <button class="workerinfo-save-btn">Save</button>
+        <div class="workerinfo-persinfo-title-cont">
+            <h2 class="workerinfo-sub-title-text">Compensation</h2>
+             <button class="workerinfo-btn jsCompensationSaveBtn">Save</button>
+            <button class="disable-btn jsCompensationEditBtn">Edit</button>
+            <button class="disable-btn jsCompensationCancelBtn">Cancel</button>
         </div>
-         <div class="workerinfo-item-main-cont">
+        <div class="workerinfo-item-main-cont jsWorkerInfoItemCompensationMainCont">
             <div class="workerinfo-item-cont">
-                <label class="workerinfo-item-label">Salary per day :</label>
-                <input class="workerinfo-item-input" />
+                <label class="workerinfo-item-label">Basic Salary :</label>
+                <input name="BasicSalary" class="workerinfo-item-input validate regex" />
             </div>
             
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Allowance :</label>
-                <input class="workerinfo-item-input" />
+                <input name="Allowance" class="workerinfo-item-input validate regex" value="0.00"/>
             </div>
             <div class="workerinfo-item-cont">
-                <label class="workerinfo-item-label">Fixed Salry? :</label>
-                <select class="workerinfo-item-select" >
+                <label class="workerinfo-item-label">Rate Period:</label>
+                <select class="workerinfo-item-select jsRatePeriodSelect">
+                    <option class="workerinfo-item-options" data-id=1>Daily</option>
+                    <option class="workerinfo-item-options" data-id=2>Monthly</option>
+                </select>
+            </div>
+            <div class="workerinfo-item-cont">
+                <label class="workerinfo-item-label">Fixed Salary? :</label>
+                <select class="workerinfo-item-select jsIsSalaryFixedSelect disable-input" disabled>
                     <option class="workerinfo-item-options" data-id=1>No</option>
                     <option class="workerinfo-item-options" data-id=2>Yes</option>
                 </select>
             </div>
-           
+
         </div>
     </div>
 </div>

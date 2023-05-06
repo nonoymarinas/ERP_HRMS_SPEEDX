@@ -53,7 +53,7 @@
     margin-top: 1em;
     border: 1px solid #505050;
 }
-.workerinfo-save-btn {
+.workerinfo-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,46 +65,12 @@
     letter-spacing: .1em; 
     cursor: pointer;
 }
-.workerinfo-save-btn:hover {
+.workerinfo-btn:hover {
     border: #808080;
     background: #999;
     color: #111;
-}
-.workerinfo-edit-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border: none;
-    background: none;
-    height: 100%;
-    color: #d5d5d5;
-    letter-spacing: .1em;
-    cursor: pointer;
-}
-.workerinfo-edit-btn:hover {
-    border: #808080;
-    background: #999;
-    color: #111;
-}
-.workerinfo-cancel-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border: none;
-    background: none;
-    height: 100%;
-    color: #d5d5d5;
-    letter-spacing: .1em;
-    cursor: pointer;
 }
 
-    .workerinfo-cancel-btn:hover {
-        border: #808080;
-        background: #999;
-        color: #111;
-    }
 .workerinfo-sub-title-text {
     padding: .3em;
     font-size: 1.2em;

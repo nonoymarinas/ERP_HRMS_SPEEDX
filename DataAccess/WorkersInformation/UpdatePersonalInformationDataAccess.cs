@@ -7,9 +7,9 @@ namespace DataAccess
 	public class UpdatePersonalInformationDataAccess: IUpdatePersonalInfo
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamPersonalInfoModels _personalInfo;
+		private readonly ParamPersonalInfoModel _personalInfo;
 
-		public UpdatePersonalInformationDataAccess(ConnectionSettings connection, ParamPersonalInfoModels personalInfo)
+		public UpdatePersonalInformationDataAccess(ConnectionSettings connection, ParamPersonalInfoModel personalInfo)
 		{
 			_connection = connection;
 			_personalInfo= personalInfo;

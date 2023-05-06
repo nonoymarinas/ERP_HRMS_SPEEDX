@@ -9,17 +9,18 @@ using DataAccess;
 
 namespace BusinessLogic
 {
-	public class WorkersInformationLogic:ISavePersonalInfo, IUpdatePersonalInfo
+	public class PersonalInformationLogic:ISavePersonalInfo, IUpdatePersonalInfo
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamPersonalInfoModels _personalInfo;
+		private readonly ParamPersonalInfoModel _personalInfo;
 
-		public WorkersInformationLogic(IOptions<ConnectionSettings> connection, ParamPersonalInfoModels personalInfo)
+		public PersonalInformationLogic(IOptions<ConnectionSettings> connection, ParamPersonalInfoModel personalInfo)
 		{
 			_connection = connection.Value;
 			_personalInfo = personalInfo;
 		}
 
+		
 		async public Task<ReturnSavePersonalInfoModels> SavePersonalInfo()
 		{
 			SavePersonalInformationDataAccess dataAccessData = new(_connection,_personalInfo);
@@ -31,5 +32,6 @@ namespace BusinessLogic
 			UpdatePersonalInformationDataAccess dataAccessData = new(_connection, _personalInfo);
 			return await dataAccessData.UpdatePersonalInfo();
 		}
+
 	}
 }

@@ -7,9 +7,9 @@ namespace DataAccess
 	public class SavePersonalInformationDataAccess: ISavePersonalInfo
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamPersonalInfoModels _personalInfo;
+		private readonly ParamPersonalInfoModel _personalInfo;
 
-		public SavePersonalInformationDataAccess(ConnectionSettings connection, ParamPersonalInfoModels personalInfo)
+		public SavePersonalInformationDataAccess(ConnectionSettings connection, ParamPersonalInfoModel personalInfo)
 		{
 			_connection = connection;
 			_personalInfo= personalInfo;
