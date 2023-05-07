@@ -32,6 +32,10 @@ namespace DataAccess
 					cmd.Parameters.Add(new SqlParameter("@MasterPersonID", SqlDbType.Int));
 					cmd.Parameters["@MasterPersonID"].Value = _benifits.MasterPersonID;
 
+
+					cmd.Parameters.Add(new SqlParameter("@UMIDNumber", SqlDbType.NVarChar));
+					cmd.Parameters["@UMIDNumber"].Value = _benifits.UMIDNumber;
+
 					cmd.Parameters.Add(new SqlParameter("@SSSNumber", SqlDbType.NVarChar));
 					cmd.Parameters["@SSSNumber"].Value = _benifits.SSSNumber;
 
@@ -61,9 +65,10 @@ namespace DataAccess
 							{
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
+								dataModel.UMIDNumber = reader["UMIDNumber"].ToString();
 								dataModel.SSSNumber = reader["SSSNumber"].ToString();
-								dataModel.PagibigNumber = reader["PagibigNumber"].ToString();
-								dataModel.PhilhealthNumber = reader["PhilhealthNumber"].ToString();
+								dataModel.PagIbigNumber = reader["PagibigNumber"].ToString();
+								dataModel.PhilHealthNumber = reader["PhilhealthNumber"].ToString();
 								dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
 							}
 							

@@ -39,17 +39,21 @@
             <button class="disable-btn jsBenifitsCancelBtn">Cancel</button>
         </div>
         <div class="workerinfo-item-main-cont jsWorkerInfoItemBenifitsMainCont">
+             <div class="workerinfo-item-cont">
+                <label class="workerinfo-item-label">UMID No :</label>
+                <input name="UMIDNumber" class="workerinfo-item-input jsUMIDNumber validate" placeholder="*example 0033-1234567-1"/>
+            </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">SSS No :</label>
-                <input name="SSSNumber" class="workerinfo-item-input jsSSSNumber validate" />
+                <input name="SSSNumber" class="workerinfo-item-input jsSSSNumber validate" placeholder="*example 33-1234567-2"/>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Pag-ibig No :</label>
-                <input name="PagIbigNumber" class="workerinfo-item-input jsPagIbigNumber validate" />
+                <input name="PagIbigNumber" class="workerinfo-item-input jsPagIbigNumber validate" placeholder="*example 1234-1234-1234"/>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Philhealth No :</label>
-                <input name="PhilHealthNumber" class="workerinfo-item-input jsPhilHealthNumber validate" />
+                <input name="PhilHealthNumber" class="workerinfo-item-input jsPhilHealthNumber validate" placeholder="*example 02-123456789-5" />
             </div>
 
         </div>
@@ -87,11 +91,6 @@
                 <label class="workerinfo-item-label">Basic Salary :</label>
                 <input name="BasicSalary" class="workerinfo-item-input validate jsBasicSalaryInput" />
             </div>
-            
-            <div class="workerinfo-item-cont">
-                <label class="workerinfo-item-label">Allowance :</label>
-                <input name="Allowance" class="workerinfo-item-input validate jsAllowanceInput" value="0.00"/>
-            </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Rate Period:</label>
                 <select class="workerinfo-item-select jsRatePeriodSelect">
@@ -99,6 +98,11 @@
                     <option class="workerinfo-item-options" data-id=2>Monthly</option>
                 </select>
             </div>
+            <div class="workerinfo-item-cont">
+                <label class="workerinfo-item-label">Allowance :</label>
+                <input name="Allowance" class="workerinfo-item-input validate jsAllowanceInput" value="0.00"/>
+            </div>
+            
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Fixed Salary? :</label>
                 <select class="workerinfo-item-select jsIsSalaryFixedSelect disable-input" disabled>

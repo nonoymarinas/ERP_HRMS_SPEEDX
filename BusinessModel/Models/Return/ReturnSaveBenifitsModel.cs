@@ -10,8 +10,9 @@ namespace BusinessModel
 	public class ReturnSaveBenifitsModel : DBStandardReturn
 	{
 		public int MasterPersonID { get; set; }
+		public string? UMIDNumber { get; set; }
 		public string? SSSNumber { get; set; }
-		public string? PagibigNumber { get; set; }
-		public string? PhilhealthNumber { get; set; }
+		public string? PagIbigNumber { get; set; }
+		public string? PhilHealthNumber { get; set; }
 	}
 }

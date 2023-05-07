@@ -9,7 +9,11 @@
     containerNo: /^(?:\s*[a-zA-Z0-9,_\.\077\0100\*\+\&\#\'\~\;\-\!\@\;]{1,}\s*)*$/,
     weigth: /^[+-]?\d+(\.\d+)?$/,
     quantity: /^[+-]?\d+(\.\d+)?$/,
-    decimal: /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/
+    decimal: /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/,
+    umidNumber: /^\d{4}-\d{7}-\d{1}$/,
+    sssNumber: /^\d{2}-\d{7}-\d{1}$/,
+    pagibigNumber: /^\d{4}-\d{4}-\d{4}$/,
+    philihealthNumber: /^\d{2}-\d{9}-\d{1}$/,
 }
 
 function validate(targetElement, regex) {

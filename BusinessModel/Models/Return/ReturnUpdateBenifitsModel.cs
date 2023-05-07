@@ -10,6 +10,7 @@ namespace BusinessModel
 	public class ReturnUpdateBenifitsModel : DBStandardReturn
 	{
 		public int MasterPersonID { get; set; }
+		public string? UMIDNumber { get; set; }
 		public string? SSSNumber { get; set; }
 		public string? PagibigNumber { get; set; }
 		public string? PhilhealthNumber { get; set; }

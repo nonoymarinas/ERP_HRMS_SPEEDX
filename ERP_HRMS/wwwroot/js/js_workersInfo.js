@@ -16,6 +16,7 @@
             }
         },
         benifits: {
+            umidNumber: '',
             sssNumber: '',
             pagibigNumber: '',
             philhealthNumber: ''
@@ -120,8 +121,12 @@
         let data = await fetchData.postData('save-personal-information', options)
         console.log(data)
         //validate return data
-        if (!data) return
-
+        if (data) {
+            alertCustom.isConfirmedOk(alertContainer.successAlert, alertMessages.saveSuccessfull)
+        } else {
+            return
+        }
+          
         //update data and change elemenet appearance
         localData.personalInfo.masterPersonID = data.masterPersonID;
         localData.personalInfo.firstName = data.firstName;
@@ -137,6 +142,8 @@
 
         //edit and update should run only after saved is done, thats why it located in here
         await personalInfoEditAndUpdate()
+
+        jsWorkerInfoSaveBtn.removeEventListener('click', clickPersInfoSaveBtn)
     }
 
     //edit and update personal info button
@@ -277,30 +284,40 @@
         let isValid = true;
 
         //sss number
-        const jsMobileNumber = document.querySelector('.jsMobileNumber');
-        if (!regexPatterns.mobileNo.test(jsMobileNumber.value)) {
-            jsMobileNumber.classList.add('invalid');
+        const jsUMIDNumber = document.querySelector('.jsUMIDNumber');
+        if (!regexPatterns.umidNumber.test(jsUMIDNumber.value)) {
+            jsUMIDNumber.classList.add('invalid');
             isValid = false
         } else {
-            jsMobileNumber.classList.remove('invalid');
+            jsUMIDNumber.classList.remove('invalid');
         }
 
-        //landline
-        const jsLandlineNumber = document.querySelector('.jsLandlineNumber');
-        if (!regexPatterns.landlineNo.test(jsLandlineNumber.value)) {
-            jsLandlineNumber.classList.add('invalid');
+
+        //sss number
+        const jsSSSNumber = document.querySelector('.jsSSSNumber');
+        if (!regexPatterns.sssNumber.test(jsSSSNumber.value)) {
+            jsSSSNumber.classList.add('invalid');
             isValid = false
         } else {
-            jsLandlineNumber.classList.remove('invalid');
+            jsSSSNumber.classList.remove('invalid');
+        }
+
+        //pag-ibig
+        const jsPagIbigNumber = document.querySelector('.jsPagIbigNumber');
+        if (!regexPatterns.pagibigNumber.test(jsPagIbigNumber.value)) {
+            jsPagIbigNumber.classList.add('invalid');
+            isValid = false
+        } else {
+            jsPagIbigNumber.classList.remove('invalid');
         }
 
         //email address
-        const jsEmailAddress = document.querySelector('.jsEmailAddress');
-        if (!regexPatterns.emailAddress.test(jsEmailAddress.value)) {
-            jsEmailAddress.classList.add('invalid');
+        const jsPhilHealthNumber = document.querySelector('.jsPhilHealthNumber');
+        if (!regexPatterns.philihealthNumber.test(jsPhilHealthNumber.value)) {
+            jsPhilHealthNumber.classList.add('invalid');
             isValid = false
         } else {
-            jsEmailAddress.classList.remove('invalid');
+            jsPhilHealthNumber.classList.remove('invalid');
         }
         return isValid
     }
@@ -378,13 +395,19 @@
         const options = collectBenifitsData()
 
         const data = await fetchData.postData('save-benifits', options)
-        if (!data) return;
+
+        if (data) {
+            alertCustom.isConfirmedOk(alertContainer.successAlert, alertMessages.saveSuccessfull)
+        } else {
+            return
+        }
         console.log(data)
 
         //update local data
+        localData.benifits.umidNumber = data.umidNumber;
         localData.benifits.sssNumber = data.sssNumber;
-        localData.benifits.pagibigNumber = data.pagibigNumber;
-        localData.benifits.philhealthNumber = data.philhealthNumber;
+        localData.benifits.pagibigNumber = data.pagIbigNumber;
+        localData.benifits.philhealthNumber = data.philHealthNumber;
 
         //disable save buttons and enable edit
         disableBeniftsSaveAndEnableEditBtn()
@@ -429,18 +452,27 @@
             //validation of input data
             if (!isBenifitsInputValid()) return;
 
+            //regex
+            if(!isRegexBenifitsValidationPassed()) return;
+
+
             //update data via fetch api
             const options = collectBenifitsData();
             let data = await fetchData.postData('update-benifits', options)
             console.log(data)
 
             //validate return data
-            if (!data) return
+            if (data) {
+                alertCustom.isConfirmedOk(alertContainer.successAlert, alertMessages.updateSuccessfull)
+            } else {
+                return
+            }
 
             //update local data
+            localData.benifits.umidNumber = data.umidNumber;
             localData.benifits.sssNumber = data.sssNumber;
-            localData.benifits.pagibigNumber = data.pagibigNumber;
-            localData.benifits.philhealthNumber = data.philhealthNumber;
+            localData.benifits.pagibigNumber = data.pagIbigNumber;
+            localData.benifits.philhealthNumber = data.philHealthNumber;
 
             //change text update to edit
             jsBenifitsEditBtn.textContent = 'Edit'
@@ -474,6 +506,7 @@
 
                 //retrieve previous input value
                 const jsWorkerInfoItemBenifitsMainCont = document.querySelector('.jsWorkerInfoItemBenifitsMainCont');
+                jsWorkerInfoItemBenifitsMainCont.querySelector('.jsUMIDNumber').value = localData.benifits.umidNumber;
                 jsWorkerInfoItemBenifitsMainCont.querySelector('.jsSSSNumber').value = localData.benifits.sssNumber;
                 jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPagIbigNumber').value = localData.benifits.pagibigNumber;
                 jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPhilHealthNumber').value = localData.benifits.philhealthNumber;
