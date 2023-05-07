@@ -35,8 +35,8 @@ namespace DataAccess
 					cmd.Parameters.Add(new SqlParameter("@RatePeriodID", SqlDbType.Int));
 					cmd.Parameters["@RatePeriodID"].Value = _compensation.RatePeriodID;
 
-					cmd.Parameters.Add(new SqlParameter("@IsSalaryFixedID", SqlDbType.Int));
-					cmd.Parameters["@IsSalaryFixedID"].Value = _compensation.IsSalaryFixedID;
+					cmd.Parameters.Add(new SqlParameter("@IsSalaryFixed", SqlDbType.Int));
+					cmd.Parameters["@IsSalaryFixed"].Value = _compensation.IsSalaryFixed;
 
 					cmd.Parameters.Add(new SqlParameter("@CurrencyID", SqlDbType.Int));
 					cmd.Parameters["@CurrencyID"].Value = _compensation.CurrencyID;
@@ -74,7 +74,7 @@ namespace DataAccess
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
 								dataModel.RatePeriodID = Convert.ToInt32(reader["RatePeriodID"]);
-								dataModel.IsSalaryFixedID = Convert.ToInt32(reader["IsSalaryFixedID"]);
+								dataModel.IsSalaryFixedID = Convert.ToInt32(reader["IsSalaryFixed"]);
 								dataModel.CurrencyID = Convert.ToInt32(reader["CurrencyID"]);
 								dataModel.HourPerDay = Convert.ToInt32(reader["HourPerDay"]);
 								dataModel.DayPerMonth = Convert.ToInt32(reader["DayPerMonth"]);
