@@ -546,6 +546,9 @@
             return;
         }
 
+        //check input validation
+        if (!isContactsInputValid()) return;
+
         const options = collectContactsData()
 
         const data = await fetchData.postData('save-contacts', options)
@@ -766,11 +769,15 @@
             return;
         }
 
-        const options = collectCompensationData()
+        //validate input
+        if (!isContactsInputValid()) return;
 
+        //fetch data
+        const options = collectCompensationData()
         const data = await fetchData.postData('save-compensation', options)
+
+        //validate data
         if (!data) return;
-        console.log(data)
 
         //update local data
         localData.compensation.ratePeriodID = data.ratePeriodID;
