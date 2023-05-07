@@ -5,6 +5,7 @@
             <h2 class="workerinfo-title-text">Workers Information Sheet</h2>
             <h2 class="workerinfo-title-close">&times;</h2>
         </div>
+        @*personal information*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Personal Information</h2>
             <button class="workerinfo-btn jsWorkerInfoSaveBtn">Save</button>
@@ -29,6 +30,8 @@
                 <input name="DateOfBirth" type="date" class="workerinfo-item-input jsDateOfBirth validate" />
             </div>
         </div>
+
+        @*benifits*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Benefits</h2>
             <button class="workerinfo-btn jsBenifitsSaveBtn">Save</button>
@@ -50,6 +53,7 @@
             </div>
 
         </div>
+        @*contacts*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Contact</h2>
             <button class="workerinfo-btn jsContactSaveBtn">Save</button>
@@ -71,6 +75,7 @@
             </div>
 
         </div>
+        @*compensation*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Compensation</h2>
              <button class="workerinfo-btn jsCompensationSaveBtn">Save</button>
@@ -80,12 +85,12 @@
         <div class="workerinfo-item-main-cont jsWorkerInfoItemCompensationMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Basic Salary :</label>
-                <input name="BasicSalary" class="workerinfo-item-input validate regex" />
+                <input name="BasicSalary" class="workerinfo-item-input validate jsBasicSalaryInput" />
             </div>
             
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Allowance :</label>
-                <input name="Allowance" class="workerinfo-item-input validate regex" value="0.00"/>
+                <input name="Allowance" class="workerinfo-item-input validate jsAllowanceInput" value="0.00"/>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Rate Period:</label>
@@ -97,8 +102,8 @@
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Fixed Salary? :</label>
                 <select class="workerinfo-item-select jsIsSalaryFixedSelect disable-input" disabled>
-                    <option class="workerinfo-item-options" data-id=0>No</option>
-                    <option class="workerinfo-item-options" data-id=1>Yes</option>
+                    <option class="workerinfo-item-options"value="0" data-id=0>No</option>
+                    <option class="workerinfo-item-options"value="1" data-id=1>Yes</option>
                 </select>
             </div>
 

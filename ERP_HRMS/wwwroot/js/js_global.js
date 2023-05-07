@@ -1,4 +1,4 @@
-﻿const regExpValidationPatterns = {
+﻿const regexPatterns = {
     emailAddress: /^([a-z\d\.-]+)@([a-z\d-]+).([a-z]{2,8})(\.[a-z]{2,8})$/,
     iStillLoveYou: /^([\w@-]{8,20})$/,
     confirmPassword: /^([\w@-]{8,20})$/,
@@ -8,7 +8,8 @@
     longitude: /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/,
     containerNo: /^(?:\s*[a-zA-Z0-9,_\.\077\0100\*\+\&\#\'\~\;\-\!\@\;]{1,}\s*)*$/,
     weigth: /^[+-]?\d+(\.\d+)?$/,
-    quantity: /^[+-]?\d+(\.\d+)?$/
+    quantity: /^[+-]?\d+(\.\d+)?$/,
+    decimal: /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/
 }
 
 function validate(targetElement, regex) {

@@ -74,7 +74,7 @@ namespace DataAccess
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
 								dataModel.RatePeriodID = Convert.ToInt32(reader["RatePeriodID"]);
-								dataModel.IsSalaryFixedID = Convert.ToInt32(reader["IsSalaryFixed"]);
+								dataModel.IsSalaryFixed = Convert.ToInt32(reader["IsSalaryFixed"]);
 								dataModel.CurrencyID = Convert.ToInt32(reader["CurrencyID"]);
 								dataModel.HourPerDay = Convert.ToInt32(reader["HourPerDay"]);
 								dataModel.DayPerMonth = Convert.ToInt32(reader["DayPerMonth"]);

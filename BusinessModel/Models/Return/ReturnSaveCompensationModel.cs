@@ -11,7 +11,7 @@ namespace BusinessModel
 	{
 		public int MasterPersonID { get; set; }
 		public int RatePeriodID { get; set; }
-		public int IsSalaryFixedID { get; set; }
+		public int IsSalaryFixed { get; set; }
 		public int CurrencyID { get; set; }
 		public int HourPerDay { get; set; }
 		public int DayPerMonth { get; set; }

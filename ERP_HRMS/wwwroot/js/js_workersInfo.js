@@ -1,4 +1,5 @@
 ﻿async function newEmployee() {
+    //0. GLOBAL *****************************************************************************//
     //global-local data
     const localData = {
         personalInfo: {
@@ -39,6 +40,8 @@
     //global-local variables
     let isPersonInfoSave = false;
 
+
+    //1. PERSONAL INFORMATION *****************************************************************************//
     //helper function
     function isPersonalInfoValid() {
         //--check if data empty or not
@@ -104,9 +107,6 @@
         }
     }
 
-
-
-    //1. PERSONAL INFORMATION *****************************************************************************//
     //save personal info button
     const jsWorkerInfoSaveBtn = document.querySelector('.jsWorkerInfoSaveBtn');
     jsWorkerInfoSaveBtn.addEventListener('click', clickPersInfoSaveBtn)
@@ -273,6 +273,38 @@
         return isValid;
     }
 
+    function isRegexBenifitsValidationPassed() {
+        let isValid = true;
+
+        //sss number
+        const jsMobileNumber = document.querySelector('.jsMobileNumber');
+        if (!regexPatterns.mobileNo.test(jsMobileNumber.value)) {
+            jsMobileNumber.classList.add('invalid');
+            isValid = false
+        } else {
+            jsMobileNumber.classList.remove('invalid');
+        }
+
+        //landline
+        const jsLandlineNumber = document.querySelector('.jsLandlineNumber');
+        if (!regexPatterns.landlineNo.test(jsLandlineNumber.value)) {
+            jsLandlineNumber.classList.add('invalid');
+            isValid = false
+        } else {
+            jsLandlineNumber.classList.remove('invalid');
+        }
+
+        //email address
+        const jsEmailAddress = document.querySelector('.jsEmailAddress');
+        if (!regexPatterns.emailAddress.test(jsEmailAddress.value)) {
+            jsEmailAddress.classList.add('invalid');
+            isValid = false
+        } else {
+            jsEmailAddress.classList.remove('invalid');
+        }
+        return isValid
+    }
+
     function collectBenifitsData() {
         //collecton of data
         let input = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('INPUT');
@@ -338,7 +370,11 @@
         //validate input if valid
         if(!isBenifitsInputValid()) return;
 
+        //regex validate
+        if (!isRegexBenifitsValidationPassed()) return;
 
+
+        //fetch data
         const options = collectBenifitsData()
 
         const data = await fetchData.postData('save-benifits', options)
@@ -480,6 +516,39 @@
 
         return isValid;
     }
+
+    function isRegexContactValidationPassed() {
+        let isValid = true;
+
+        //mobile number
+        const jsMobileNumber = document.querySelector('.jsMobileNumber');
+        if (!regexPatterns.mobileNo.test(jsMobileNumber.value)) {
+            jsMobileNumber.classList.add('invalid');
+            isValid = false
+        } else {
+            jsMobileNumber.classList.remove('invalid');
+        }
+
+        //landline
+        const jsLandlineNumber = document.querySelector('.jsLandlineNumber');
+        if (!regexPatterns.landlineNo.test(jsLandlineNumber.value)) {
+            jsLandlineNumber.classList.add('invalid');
+            isValid = false
+        } else {
+            jsLandlineNumber.classList.remove('invalid');
+        }
+
+        //email address
+        const jsEmailAddress = document.querySelector('.jsEmailAddress');
+        if (!regexPatterns.emailAddress.test(jsEmailAddress.value)) {
+            jsEmailAddress.classList.add('invalid');
+            isValid = false
+        } else {
+            jsEmailAddress.classList.remove('invalid');
+        }
+        return isValid
+    }
+
     function collectContactsData() {
         //collecton of data
         let input = document.querySelector('.jsWorkerInfoItemContactMainCont').querySelectorAll('INPUT');
@@ -549,6 +618,10 @@
         //check input validation
         if (!isContactsInputValid()) return;
 
+        //check regex
+        if (!isRegexContactValidationPassed()) return;
+
+
         const options = collectContactsData()
 
         const data = await fetchData.postData('save-contacts', options)
@@ -566,8 +639,6 @@
         //edit and update should run only after saved is done, thats why it located in here
         await contactsEditAndUpdate()
     }
-
-
 
     async function contactsEditAndUpdate() {
         const jsContactEditBtn = document.querySelector('.jsContactEditBtn');
@@ -604,6 +675,9 @@
 
             //validation of input data
             if (!isContactsInputValid()) return;
+
+            //check regex
+            if (!isRegexContactValidationPassed()) return
 
             //update data via fetch api
             const options = collectContactsData();
@@ -676,7 +750,7 @@
     }
 
     //4. COMPENSATION *****************************************************************************//
-    function isContactsInputValid() {
+    function isCompensationInputValid() {
         //--check if data empty or not
         let validate = document.querySelector('.jsWorkerInfoItemCompensationMainCont').querySelectorAll('.validate');
         let isValid = true;
@@ -691,21 +765,48 @@
         return isValid;
     }
 
-    function collectCompensationData() {
-        //collecton of data
-        let input = document.querySelector('.jsWorkerInfoItemCompensationMainCont').querySelectorAll('INPUT');
-        let formData = new FormData();
 
-        for (let i = 0; i < input.length; i++) {
-            formData.append(`${input[i].getAttribute('name')}`, parseFloat(input[i].value))
+    function isRegexCompensationValidationPassed() {
+        let isValid = true;
+
+        //basic salary
+        const jsBasicSalaryInput = document.querySelector('.jsBasicSalaryInput');
+        if (!regexPatterns.decimal.test(jsBasicSalaryInput.value)) {
+            jsBasicSalaryInput.classList.add('invalid');
+            isValid = false
+        } else {
+            jsBasicSalaryInput.classList.remove('invalid');
         }
 
+        //allowance
+        const jsAllowanceInput = document.querySelector('.jsAllowanceInput');
+        if (!regexPatterns.decimal.test(jsAllowanceInput.value)) {
+            jsAllowanceInput.classList.add('invalid');
+            isValid = false
+        } else {
+            jsAllowanceInput.classList.remove('invalid');
+        }
+
+        return isValid
+    }
+
+
+
+    function collectCompensationData() {
+        //collecton of data
+        
+        let formData = new FormData();
+
+        const basicSalary = parseFloat(parseFloat(document.querySelector('.jsBasicSalaryInput').value).toFixed(2))
+        const allowance = parseFloat(parseFloat(document.querySelector('.jsAllowanceInput').value).toFixed(2))
         const ratePeriodID = document.querySelector('.jsRatePeriodSelect').selectedOptions[0].getAttribute('data-id')
-        const isSalaryFixedID = document.querySelector('.jsIsSalaryFixedSelect').selectedOptions[0].getAttribute('data-id')
+        const isSalaryFixed = document.querySelector('.jsIsSalaryFixedSelect').selectedOptions[0].getAttribute('data-id')
 
         formData.append('MasterPersonID', localData.personalInfo.masterPersonID)
+        formData.append('BasicSalary', basicSalary)
+        formData.append('Allowance', allowance)
         formData.append('RatePeriodID', ratePeriodID)
-        formData.append('IsSalaryFixedID', isSalaryFixedID)
+        formData.append('IsSalaryFixed', isSalaryFixed)
         formData.append('CurrencyID', 1)
         formData.append('HourPerDay', 8)
         formData.append('DayPerMonth', 26)
@@ -754,6 +855,21 @@
 
     }
 
+    //change rate period events
+    const jsRatePeriodSelect = document.querySelector('.jsRatePeriodSelect');
+    jsRatePeriodSelect.addEventListener('change', changeSelectedRatePeriod)
+    function changeSelectedRatePeriod() {
+        const selectedID = jsRatePeriodSelect.selectedOptions[0].getAttribute('data-id');
+        if (selectedID == 2) {
+            document.querySelector('.jsIsSalaryFixedSelect').removeAttribute('disabled');
+            document.querySelector('.jsIsSalaryFixedSelect').classList.remove('disable-input');
+        } else {
+            document.querySelector('.jsIsSalaryFixedSelect').setAttribute('disabled', true);
+            document.querySelector('.jsIsSalaryFixedSelect').classList.add('disable-input');
+            document.querySelector('.jsIsSalaryFixedSelect').value = 0;
+        }
+    }
+
     //save compensation button
     const jsCompensationSaveBtn = document.querySelector('.jsCompensationSaveBtn');
     jsCompensationSaveBtn.addEventListener('click', clickCompensationSaveBtn)
@@ -770,7 +886,11 @@
         }
 
         //validate input
-        if (!isContactsInputValid()) return;
+        if (!isCompensationInputValid()) return;
+
+        //validate regex
+        if (!isRegexCompensationValidationPassed()) return;
+
 
         //fetch data
         const options = collectCompensationData()
@@ -794,5 +914,7 @@
         //edit and update should run only after saved is done, thats why it located in here
         //await contactsEditAndUpdate()
     }
+
+
     
 }
