@@ -8,33 +8,28 @@
             middleName: '',
             lastName: '',
             dateOfBirth: '',
-            isActive: false,
-            dateOfBirthFormatted: function () {
-                if (localData.personalInfo.dateOfBirth != '') {
-                    return formatDate(new Date(localData.personalInfo.dateOfBirth))
-                }
-            }
+            isActive: false
         },
         benifits: {
             umidNumber: '',
             sssNumber: '',
-            pagibigNumber: '',
-            philhealthNumber: ''
+            pagIbigNumber: '',
+            philHealthNumber: ''
         },
 
         contacts: {
             mobileNumber: '',
             landlineNumber: '',
-            emailAddress:''
+            emailAddress: ''
         },
         compensation: {
-            ratePeriodID:'',
-            isSalaryFixedID:'',
-            currencyID:'',
-            hourPerDay:'',
-            dayPerMonth:'',
-            basicSalary:'',
-            allowance:''
+            ratePeriodID: '',
+            isSalaryFixedID: '',
+            currencyID: '',
+            hourPerDay: '',
+            dayPerMonth: '',
+            basicSalary: '',
+            allowance: ''
         }
     }
 
@@ -83,10 +78,18 @@
     }
 
     function disableSaveAndEnableEditBtn() {
+
+        //****enable all pers info edit button by loop
+        //****disable save button
+        //****remove eventlistener
+        //****disable input
+
         //enable edit button
-        const jsWorkerInfoEditBtn = document.querySelector('.jsWorkerInfoEditBtn');
-        jsWorkerInfoEditBtn.classList.add('workerinfo-btn');
-        jsWorkerInfoEditBtn.classList.remove('disable-btn');
+        const jsWorkerInfoEditBtns = document.querySelectorAll('.jsWorkerInfoEditBtn');
+        for (let i = 0; i < jsWorkerInfoEditBtns.length; i++) {
+            jsWorkerInfoEditBtns[i].classList.add('workerinfo-btn');
+            jsWorkerInfoEditBtns[i].classList.remove('disable-btn');
+        }
 
         //disable save button
         jsWorkerInfoSaveBtn.classList.remove('workerinfo-btn');
@@ -96,15 +99,15 @@
         jsWorkerInfoSaveBtn.removeEventListener('click', clickPersInfoSaveBtn)
 
         //disable input
-        disablePersonalInputBtn()
+        disablePersInfoInputBtn()
     }
 
-    function disablePersonalInputBtn() {
+    function disablePersInfoInputBtn() {
         //disable input
-        let validate = document.querySelector('.jsWorkerInfoItemPersInfoMainCont').querySelectorAll('.validate');
-        for (let i = 0; i < validate.length; i++) {
-            validate[i].setAttribute('disabled', true);
-            validate[i].classList.add('disable-input');
+        let jsPersInfoInputs = document.querySelectorAll('.jsPersInfoInput');
+        for (let i = 0; i < jsPersInfoInputs.length; i++) {
+            jsPersInfoInputs[i].setAttribute('disabled', true);
+            jsPersInfoInputs[i].classList.add('disable-input');
         }
     }
 
@@ -126,13 +129,13 @@
         } else {
             return
         }
-          
+
         //update data and change elemenet appearance
         localData.personalInfo.masterPersonID = data.masterPersonID;
         localData.personalInfo.firstName = data.firstName;
         localData.personalInfo.middleName = data.middleName;
         localData.personalInfo.lastName = data.lastName;
-        localData.personalInfo.dateOfBirth = data.dateOfBirth;
+        localData.personalInfo.dateOfBirth = formatDate(new Date(data.dateOfBirth));
 
         //confirmed data is saved
         isPersonInfoSave = true;
@@ -144,34 +147,43 @@
         await personalInfoEditAndUpdate()
 
         jsWorkerInfoSaveBtn.removeEventListener('click', clickPersInfoSaveBtn)
+
+        console.log(localData.personalInfo)
     }
 
     //edit and update personal info button
     async function personalInfoEditAndUpdate() {
-        const jsWorkerInfoEditBtn = document.querySelector('.jsWorkerInfoEditBtn');
-        jsWorkerInfoEditBtn.addEventListener('click', clickEditUpdateBtn)
-        async function clickEditUpdateBtn() {
-            if (jsWorkerInfoEditBtn.classList.contains('jsWorkerInfoUpdateBtn')) {
-                await clickPersInfoUpdateBtn()
-            } else {
-                clickPersInfoEditBtn()
+        const jsWorkerInfoEditBtns = document.querySelectorAll('.jsWorkerInfoEditBtn');
+
+        for (let i = 0; i < jsWorkerInfoEditBtns.length; i++) {
+            jsWorkerInfoEditBtns[i].addEventListener('click', clickEditUpdateBtn)
+            async function clickEditUpdateBtn(e) {
+                if (jsWorkerInfoEditBtns[i].classList.contains('jsWorkerInfoUpdateBtn')) {
+                    await clickPersInfoUpdateBtn(e)
+                } else {
+                    clickPersInfoEditBtn(e)
+                }
             }
         }
 
-        function clickPersInfoEditBtn() {
+        function clickPersInfoEditBtn(e) {
+            //**** enable input
+            //**** change text to update
+            //**** insert update class
+            //**** change local data isActive to true
+            //**** activate cancel button
+
 
             //enable input
-            let validate = document.querySelector('.jsWorkerInfoItemPersInfoMainCont').querySelectorAll('.validate');
-            for (let i = 0; i < validate.length; i++) {
-                validate[i].removeAttribute('disabled');
-                validate[i].classList.remove('disable-input');
-            }
+            let input = e.target.closest('.jsInputBtnCont').querySelector('INPUT')
+            input.removeAttribute('disabled');
+            input.classList.remove('disable-input');
 
             //change text edit to update
-            jsWorkerInfoEditBtn.textContent = 'Update'
+            e.currentTarget.textContent = 'update'
 
             //insert class for update
-            jsWorkerInfoEditBtn.classList.add('jsWorkerInfoUpdateBtn');
+            e.currentTarget.classList.add('jsWorkerInfoUpdateBtn');
 
             //change local data isActive to true
             localData.personalInfo.isActive = true;
@@ -181,31 +193,48 @@
         }
 
 
-        async function clickPersInfoUpdateBtn() {
-            //validation of input data
-            if (!isPersonalInfoValid()) return;
+        async function clickPersInfoUpdateBtn(e) {
+
+            const input = e.target.closest('.jsInputBtnCont').querySelector('.jsPersInfoInput');
+
+            if (!isNullOrWhiteSpace(input.value)) {
+                input.classList.add('invalid');
+                return;
+            } else {
+                input.classList.remove('invalid');
+            }
 
             //update data via fetch api
-            const options = collectPersonalData()
+            let formData = new FormData()
+            formData.append('MasterPersonID', localData.personalInfo.masterPersonID);
+            formData.append('PropertyName', input.getAttribute('name'));
+            formData.append('PropertyValue', input.value);
+
+            const options = {
+                method: 'POST',
+                body: formData
+            }
+
             let data = await fetchData.postData('update-personal-information', options)
             console.log(data)
 
             //validate return data
             if (!data) return
 
-            //update local data
-            localData.personalInfo.firstName = data.firstName;
-            localData.personalInfo.middleName = data.middleName;
-            localData.personalInfo.lastName = data.lastName;
-            localData.personalInfo.dateOfBirth = data.dateOfBirth;
+
+            //update data and change elemenet appearance
+            localData.personalInfo[input.getAttribute('data-name')] = data.propertyValue;
             localData.personalInfo.isActive = false;
 
-            //change text update to edit
-            jsWorkerInfoEditBtn.textContent = 'Edit'
-            jsWorkerInfoEditBtn.classList.remove('jsWorkerInfoUpdateBtn');
+            console.log(localData.personalInfo)
 
-            //disable personal info input
-            disablePersonalInputBtn()
+            //change text update to edit
+            e.target.textContent = 'edit'
+            e.target.classList.remove('jsWorkerInfoUpdateBtn');
+
+            //disable input
+            input.setAttribute('disabled', true);
+            input.classList.add('disable-input');
 
             //disable cancel, from closure function
             personalInfoCancelBtn()();
@@ -216,28 +245,37 @@
             jsWorkerInfoCancelBtn.addEventListener('click', clickPersonalInfoCancelBtn);
 
             function clickPersonalInfoCancelBtn() {
-                //disable input
-                let validate = document.querySelector('.jsWorkerInfoItemPersInfoMainCont').querySelectorAll('.validate');
-                for (let i = 0; i < validate.length; i++) {
-                    validate[i].setAttribute('disabled', true);
-                    validate[i].classList.add('disable-input');
+                //****collect all pers info input
+                //****loop through input
+
+                //collect all pers info input
+                const jsPersInfoInputs = document.querySelectorAll('.jsPersInfoInput');
+
+                //loop through input
+                for (let i = 0; i < jsPersInfoInputs.length; i++) {
+                    //find active input by searching disabled attribute
+                    if (!jsPersInfoInputs[i].hasAttribute('disabled')) {
+                        console.log(jsPersInfoInputs[i])
+                        //disable inputs
+                        jsPersInfoInputs[i].setAttribute('disabled', true);
+                        jsPersInfoInputs[i].classList.add('disable-input');
+
+                        //change text update to edit
+                        const jsWorkerInfoEditBtn = jsPersInfoInputs[i].closest('.jsInputBtnCont').querySelector('.jsWorkerInfoEditBtn');
+                        jsWorkerInfoEditBtn.textContent = 'edit';
+                        jsWorkerInfoEditBtn.classList.remove('jsWorkerInfoUpdateBtn');
+
+                        //change local data isActive to true
+                        localData.personalInfo.isActive = false;
+
+                        //retrieve records
+                        const dataName = jsPersInfoInputs[i].getAttribute('data-name');
+                        console.log(dataName)
+                        jsPersInfoInputs[i].value = localData.personalInfo[dataName];
+                    }
                 }
 
-                //change text update to edit
-                jsWorkerInfoEditBtn.textContent = 'Edit'
 
-                //insert class for update
-                jsWorkerInfoEditBtn.classList.remove('jsWorkerInfoUpdateBtn');
-
-                //change local data isActive to true
-                localData.personalInfo.isActive = false;
-
-                //reverse input value
-                const jsWorkerInfoItemPersInfoMainCont = document.querySelector('.jsWorkerInfoItemPersInfoMainCont');
-                jsWorkerInfoItemPersInfoMainCont.querySelector('.jsFirstName').value = localData.personalInfo.firstName;
-                jsWorkerInfoItemPersInfoMainCont.querySelector('.jsMiddleName').value = localData.personalInfo.middleName;
-                jsWorkerInfoItemPersInfoMainCont.querySelector('.jsLastName').value = localData.personalInfo.lastName;
-                jsWorkerInfoItemPersInfoMainCont.querySelector('.jsDateOfBirth').value = localData.personalInfo.dateOfBirthFormatted();
 
                 disableCancelBtn()
             }
@@ -266,14 +304,14 @@
     //2. WORKERS BENIFITS *****************************************************************************//
     function isBenifitsInputValid() {
         //--check if data empty or not
-        let validate = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.validate');
+        let jsBenifitsInputs = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.jsBenifitsInput');
         let isValid = true;
-        for (let i = 0; i < validate.length; i++) {
-            if (isNullOrWhiteSpace(validate[i].value)) {
-                validate[i].classList.add('invalid');
+        for (let i = 0; i < jsBenifitsInputs.length; i++) {
+            if (isNullOrWhiteSpace(jsBenifitsInputs[i].value)) {
+                jsBenifitsInputs[i].classList.add('invalid');
                 isValid = false;
             } else {
-                validate[i].classList.remove('invalid');
+                jsBenifitsInputs[i].classList.remove('invalid');
             }
         }
 
@@ -283,52 +321,66 @@
     function isRegexBenifitsValidationPassed() {
         let isValid = true;
 
-        //sss number
+        //umid number
         const jsUMIDNumber = document.querySelector('.jsUMIDNumber');
-        if (!regexPatterns.umidNumber.test(jsUMIDNumber.value)) {
-            jsUMIDNumber.classList.add('invalid');
-            isValid = false
-        } else {
-            jsUMIDNumber.classList.remove('invalid');
+        if (!isNullOrWhiteSpace(jsUMIDNumber.value)) {
+            if (!regexPatterns.umidNumber.test(jsUMIDNumber.value)) {
+                console.log('UMIDNumber')
+                jsUMIDNumber.classList.add('invalid');
+                isValid = false
+            } else {
+                jsUMIDNumber.classList.remove('invalid');
+            }
         }
-
-
         //sss number
         const jsSSSNumber = document.querySelector('.jsSSSNumber');
-        if (!regexPatterns.sssNumber.test(jsSSSNumber.value)) {
-            jsSSSNumber.classList.add('invalid');
-            isValid = false
-        } else {
-            jsSSSNumber.classList.remove('invalid');
+        if (!isNullOrWhiteSpace(jsSSSNumber.value)) {
+            if (!regexPatterns.sssNumber.test(jsSSSNumber.value)) {
+                console.log('SSSNumber')
+                jsSSSNumber.classList.add('invalid');
+                isValid = false
+            } else {
+                jsSSSNumber.classList.remove('invalid');
+            }
         }
 
         //pag-ibig
         const jsPagIbigNumber = document.querySelector('.jsPagIbigNumber');
-        if (!regexPatterns.pagibigNumber.test(jsPagIbigNumber.value)) {
-            jsPagIbigNumber.classList.add('invalid');
-            isValid = false
-        } else {
-            jsPagIbigNumber.classList.remove('invalid');
+        if (!isNullOrWhiteSpace(jsPagIbigNumber.value)) {
+            if (!regexPatterns.pagibigNumber.test(jsPagIbigNumber.value)) {
+                console.log('PagIbigNumber')
+                jsPagIbigNumber.classList.add('invalid');
+                isValid = false
+            } else {
+                jsPagIbigNumber.classList.remove('invalid');
+            }
         }
 
-        //email address
+        //philhealth
         const jsPhilHealthNumber = document.querySelector('.jsPhilHealthNumber');
-        if (!regexPatterns.philihealthNumber.test(jsPhilHealthNumber.value)) {
-            jsPhilHealthNumber.classList.add('invalid');
-            isValid = false
-        } else {
-            jsPhilHealthNumber.classList.remove('invalid');
+        if (!isNullOrWhiteSpace(jsPhilHealthNumber.value)) {
+            if (!regexPatterns.philihealthNumber.test(jsPhilHealthNumber.value)) {
+                console.log('PhilHealthNumber')
+                jsPhilHealthNumber.classList.add('invalid');
+                isValid = false
+            } else {
+                jsPhilHealthNumber.classList.remove('invalid');
+            }
         }
         return isValid
     }
 
     function collectBenifitsData() {
         //collecton of data
-        let input = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('INPUT');
+        let jsBenifitsInputs = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.jsBenifitsInput');
         let formData = new FormData();
 
-        for (let i = 0; i < input.length; i++) {
-            formData.append(`${input[i].getAttribute('name')}`, input[i].value)
+        for (let i = 0; i < jsBenifitsInputs.length; i++) {
+            let value = jsBenifitsInputs[i].value
+            if (isNullOrWhiteSpace(jsBenifitsInputs[i].value)) {
+                value = null;
+            }
+            formData.append(`${jsBenifitsInputs[i].getAttribute('name')}`, value)
         }
 
         formData.append('MasterPersonID', localData.personalInfo.masterPersonID)
@@ -344,11 +396,15 @@
         return options;
     }
 
+
     function disableBeniftsSaveAndEnableEditBtn() {
+        
         //enable edit button
-        const jsBenifitsEditBtn = document.querySelector('.jsBenifitsEditBtn');
-        jsBenifitsEditBtn.classList.add('workerinfo-btn');
-        jsBenifitsEditBtn.classList.remove('disable-btn');
+        const jsBenifitsEditBtns = document.querySelectorAll('.jsBenifitsEditBtn');
+        for (let i = 0; i < jsBenifitsEditBtns.length; i++) {
+            jsBenifitsEditBtns[i].classList.add('workerinfo-btn');
+            jsBenifitsEditBtns[i].classList.remove('disable-btn');
+        }
 
         //disable save button
         const jsBenifitsSaveBtn = document.querySelector('.jsBenifitsSaveBtn');
@@ -361,14 +417,18 @@
         //disable input
         disableBenifitsInputBtn()
     }
+
+
     function disableBenifitsInputBtn() {
         //disable input
-        let validate = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.validate');
-        for (let i = 0; i < validate.length; i++) {
-            validate[i].setAttribute('disabled', true);
-            validate[i].classList.add('disable-input');
+        let jsBenifitsInputs = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.jsBenifitsInput');
+        for (let i = 0; i < jsBenifitsInputs.length; i++) {
+            jsBenifitsInputs[i].setAttribute('disabled', true);
+            jsBenifitsInputs[i].classList.add('disable-input');
         }
     }
+
+
     //save benifits button
     const jsBenifitsSaveBtn = document.querySelector('.jsBenifitsSaveBtn');
     jsBenifitsSaveBtn.addEventListener('click', clickBenifitsSaveBtn)
@@ -385,7 +445,7 @@
         }
 
         //validate input if valid
-        if(!isBenifitsInputValid()) return;
+        //****it is ok if empty**/
 
         //regex validate
         if (!isRegexBenifitsValidationPassed()) return;
@@ -401,13 +461,12 @@
         } else {
             return
         }
-        console.log(data)
-
+        
         //update local data
         localData.benifits.umidNumber = data.umidNumber;
         localData.benifits.sssNumber = data.sssNumber;
-        localData.benifits.pagibigNumber = data.pagIbigNumber;
-        localData.benifits.philhealthNumber = data.philHealthNumber;
+        localData.benifits.pagIbigNumber = data.pagIbigNumber;
+        localData.benifits.philHealthNumber = data.philHealthNumber;
 
         //disable save buttons and enable edit
         disableBeniftsSaveAndEnableEditBtn()
@@ -415,6 +474,9 @@
         //edit and update should run only after saved is done, thats why it located in here
         await benifitsEditAndUpdate()
     }
+
+
+
 
     async function benifitsEditAndUpdate() {
         const jsBenifitsEditBtn = document.querySelector('.jsBenifitsEditBtn');
@@ -430,14 +492,14 @@
         function clickBenifitsEditBtn() {
 
             //enable input
-            let validate = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.validate');
-            for (let i = 0; i < validate.length; i++) {
-                validate[i].removeAttribute('disabled');
-                validate[i].classList.remove('disable-input');
+            let jsBenifitsInputs = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.jsBenifitsInput');
+            for (let i = 0; i < jsBenifitsInputs.length; i++) {
+                jsBenifitsInputs[i].removeAttribute('disabled');
+                jsBenifitsInputs[i].classList.remove('disable-input');
             }
 
             //change text edit to update
-            jsBenifitsEditBtn.textContent = 'Update'
+            jsBenifitsEditBtn.textContent = 'update'
 
             //insert class for update
             jsBenifitsEditBtn.classList.add('jsBenifitsUpdateBtn');
@@ -453,7 +515,7 @@
             if (!isBenifitsInputValid()) return;
 
             //regex
-            if(!isRegexBenifitsValidationPassed()) return;
+            if (!isRegexBenifitsValidationPassed()) return;
 
 
             //update data via fetch api
@@ -492,10 +554,10 @@
 
             function clickBenifitsCancelBtn() {
                 //disable input
-                let validate = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.validate');
-                for (let i = 0; i < validate.length; i++) {
-                    validate[i].setAttribute('disabled', true);
-                    validate[i].classList.add('disable-input');
+                let jsBenifitsInputs = document.querySelector('.jsWorkerInfoItemBenifitsMainCont').querySelectorAll('.jsBenifitsInput');
+                for (let i = 0; i < jsBenifitsInputs.length; i++) {
+                    jsBenifitsInputs[i].setAttribute('disabled', true);
+                    jsBenifitsInputs[i].classList.add('disable-input');
                 }
 
                 //change text update to edit
@@ -508,8 +570,8 @@
                 const jsWorkerInfoItemBenifitsMainCont = document.querySelector('.jsWorkerInfoItemBenifitsMainCont');
                 jsWorkerInfoItemBenifitsMainCont.querySelector('.jsUMIDNumber').value = localData.benifits.umidNumber;
                 jsWorkerInfoItemBenifitsMainCont.querySelector('.jsSSSNumber').value = localData.benifits.sssNumber;
-                jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPagIbigNumber').value = localData.benifits.pagibigNumber;
-                jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPhilHealthNumber').value = localData.benifits.philhealthNumber;
+                jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPagIbigNumber').value = localData.benifits.pagIbigNumber;
+                jsWorkerInfoItemBenifitsMainCont.querySelector('.jsPhilHealthNumber').value = localData.benifits.philHealthNumber;
 
                 //disable cancel button
                 disableCancelBtn()
@@ -528,7 +590,6 @@
             jsBenifitsCancelBtn.classList.remove('disable-btn');
 
             return disableCancelBtn;
-
         }
     }
 
@@ -827,7 +888,7 @@
 
     function collectCompensationData() {
         //collecton of data
-        
+
         let formData = new FormData();
 
         const basicSalary = parseFloat(parseFloat(document.querySelector('.jsBasicSalaryInput').value).toFixed(2))
@@ -949,5 +1010,5 @@
     }
 
 
-    
+
 }

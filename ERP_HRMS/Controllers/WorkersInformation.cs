@@ -27,7 +27,7 @@ namespace ERP_HRMS.Controllers
         }
 
 		[Route("update-personal-information")]
-		async public Task<IActionResult> UpdatePersonalInfo(ParamPersonalInfoModel persInfo)
+		async public Task<IActionResult> UpdatePersonalInfo(ParamUpdatePersonalInfoModel persInfo)
 		{
 			PersonalInformationLogic dataLogic = new(_connection, persInfo);
 			return Json(await dataLogic.UpdatePersonalInfo());

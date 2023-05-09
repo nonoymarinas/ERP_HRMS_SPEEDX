@@ -7,9 +7,9 @@ namespace DataAccess
 	public class UpdatePersonalInformationDataAccess: IUpdatePersonalInfo
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamPersonalInfoModel _personalInfo;
+		private readonly ParamUpdatePersonalInfoModel? _personalInfo;
 
-		public UpdatePersonalInformationDataAccess(ConnectionSettings connection, ParamPersonalInfoModel personalInfo)
+		public UpdatePersonalInformationDataAccess(ConnectionSettings connection, ParamUpdatePersonalInfoModel? personalInfo)
 		{
 			_connection = connection;
 			_personalInfo= personalInfo;
@@ -32,18 +32,13 @@ namespace DataAccess
 					cmd.Parameters.Add(new SqlParameter("@MasterPersonID", SqlDbType.Int));
 					cmd.Parameters["@MasterPersonID"].Value = _personalInfo.MasterPersonID;
 
-					cmd.Parameters.Add(new SqlParameter("@FirstName", SqlDbType.NVarChar));
-					cmd.Parameters["@FirstName"].Value = _personalInfo.FirstName;
+					cmd.Parameters.Add(new SqlParameter("@PropertyName", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyName"].Value = _personalInfo.PropertyName;
 
-					cmd.Parameters.Add(new SqlParameter("@MiddleName", SqlDbType.NVarChar));
-					cmd.Parameters["@MiddleName"].Value = _personalInfo.MiddleName;
+					cmd.Parameters.Add(new SqlParameter("@PropertyValue", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyValue"].Value = _personalInfo.PropertyValue;
 
-					cmd.Parameters.Add(new SqlParameter("@LastName", SqlDbType.NVarChar));
-					cmd.Parameters["@LastName"].Value = _personalInfo.LastName;
-
-					cmd.Parameters.Add(new SqlParameter("@DateOfBirth", SqlDbType.Date));
-					cmd.Parameters["@DateOfBirth"].Value = _personalInfo.DateOfBirth;
-
+					
 					using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
 					{
 						//Check for errors and if true, retreive the error message!
@@ -63,10 +58,8 @@ namespace DataAccess
 							{
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
-								dataModel.FirstName = reader["FirstName"].ToString();
-								dataModel.MiddleName = reader["MiddleName"].ToString();
-								dataModel.LastName = reader["LastName"].ToString();
-								dataModel.DateOfBirth = reader["DateOfBirth"].ToString();
+								dataModel.PropertyValue = reader["PropertyValue"].ToString();
+								dataModel.PropertyName = reader["PropertyName"].ToString();
 								dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
 								
 							}
