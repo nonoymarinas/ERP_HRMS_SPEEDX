@@ -8,15 +8,15 @@
         @*personal information*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Personal Information</h2>
-            <button class="workerinfo-btn jsWorkerInfoSaveBtn">Save</button>
-            <button class="disable-btn jsWorkerInfoCancelBtn">Cancel</button>
+            <button class="workers-btn workerinfo-btn jsWorkerInfoSaveBtn">Save</button>
+            <button class="workers-btn disable-btn jsWorkerInfoCancelBtn">Cancel</button>
         </div>
         <div class="workerinfo-item-main-cont jsWorkerInfoItemPersInfoMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">First Name :</label>
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="FirstName" class="workerinfo-item-input jsFirstName validate jsPersInfoInput" data-name="firstName" />
-                    <button class="input-btn jsWorkerInfoEditBtn">edit</button>
+                    <button class="position-relative input-btn jsWorkerInfoEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
@@ -24,7 +24,7 @@
 
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="MiddleName" class="workerinfo-item-input jsMiddleName validate jsPersInfoInput" data-name="middleName" />
-                    <button class="input-btn jsWorkerInfoEditBtn">edit</button>
+                    <button class="position-relative input-btn jsWorkerInfoEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
@@ -32,7 +32,7 @@
 
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="LastName" class="workerinfo-item-input jsLastName validate jsPersInfoInput" data-name="lastName" />
-                    <button class="input-btn jsWorkerInfoEditBtn">edit</button>
+                    <button class="position-relative input-btn jsWorkerInfoEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
@@ -40,7 +40,7 @@
 
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="DateOfBirth" type="date" class="workerinfo-item-input jsDateOfBirth validate jsPersInfoInput" data-name="dateOfBirth" />
-                    <button class="input-btn jsWorkerInfoEditBtn">edit</button>
+                    <button class="position-relative input-btn jsWorkerInfoEditBtn">EDIT</button>
                 </div>
             </div>
         </div>
@@ -55,29 +55,29 @@
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">UMID No :</label>
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
-                    <input name="UMIDNumber" class="workerinfo-item-input jsUMIDNumber validate jsBenifitsInput" placeholder="*example 0033-1234567-1" data-name="uMIDNumber" />
-                    <button class="input-btn jsBenifitsEditBtn">edit</button>
+                    <input name="UMIDNumber" class="workerinfo-item-input jsUMIDNumber validate jsBenifitsInput" placeholder="*example 0033-1234567-1" data-name="umidNumber" />
+                    <button class="input-btn jsBenifitsEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">SSS No :</label>
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
-                    <input name="SSSNumber" class="workerinfo-item-input jsSSSNumber validate jsBenifitsInput" placeholder="*example 33-1234567-2" data-name="sSSNumber" />
-                    <button class="input-btn jsBenifitsEditBtn">edit</button>
+                    <input name="SSSNumber" class="workerinfo-item-input jsSSSNumber validate jsBenifitsInput" placeholder="*example 33-1234567-2" data-name="sssNumber" />
+                    <button class="input-btn jsBenifitsEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Pag-ibig No :</label>
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="PagIbigNumber" class="workerinfo-item-input jsPagIbigNumber validate jsBenifitsInput" placeholder="*example 1234-1234-1234" data-name="pagIbigNumber" />
-                    <button class="input-btn jsBenifitsEditBtn">edit</button>
+                    <button class="input-btn jsBenifitsEditBtn">EDIT</button>
                 </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Philhealth No :</label>
                 <div class="workerinfo-input-icon-cont jsInputBtnCont">
                     <input name="PhilHealthNumber" class="workerinfo-item-input jsPhilHealthNumber validate jsBenifitsInput" placeholder="*example 02-123456789-5" data-name="philHealthNumber" />
-                    <button class="input-btn jsBenifitsEditBtn">edit</button>
+                    <button class="input-btn jsBenifitsEditBtn">EDIT</button>
                 </div>
             </div>
 
@@ -86,24 +86,34 @@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Contact</h2>
             <button class="workerinfo-btn jsContactSaveBtn">Save</button>
-            <button class="disable-btn jsContactEditBtn">Edit</button>
             <button class="disable-btn jsContactCancelBtn">Cancel</button>
         </div>
         <div class="workerinfo-item-main-cont jsWorkerInfoItemContactMainCont">
             <div class="workerinfo-item-cont">
-                <label class="workerinfo-item-label">Mobile No :</label>
-                <input name="MobileNumber" class="workerinfo-item-input jsMobileNumber validate" />
+                <label class="workerinfo-item-label">Mobile No* :</label>
+                
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <input name="MobileNumber" class="workerinfo-item-input jsMobileNumber jsContactsInput" data-name="mobileNumber" />
+                    <button class="input-btn jsContactsEditBtn">EDIT</button>
+                </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Landline No :</label>
-                <input name="LandlineNumber" class="workerinfo-item-input jsLandlineNumber validate" />
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <input name="LandLineNumber" class="workerinfo-item-input jsLandLineNumber jsContactsInput" data-name="landLineNumber" />
+                    <button class="input-btn jsContactsEditBtn">EDIT</button>
+                </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Email Add :</label>
-                <input name="EmailAddress" class="workerinfo-item-input jsEmailAddress validate" />
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <input name="EmailAddress" class="workerinfo-item-input jsEmailAddress jsContactsInput" data-name="emailAddress" />
+                    <button class="input-btn jsContactsEditBtn">EDIT</button>
+                </div>
             </div>
 
         </div>
+
         @*compensation*@
         <div class="workerinfo-persinfo-title-cont">
             <h2 class="workerinfo-sub-title-text">Compensation</h2>
@@ -114,26 +124,38 @@
         <div class="workerinfo-item-main-cont jsWorkerInfoItemCompensationMainCont">
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Basic Salary :</label>
-                <input name="BasicSalary" class="workerinfo-item-input validate jsBasicSalaryInput" />
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <input name="BasicSalary" class="workerinfo-item-input jsBasicSalary jsCompensationInput" data-name="basicSalary" />
+                    <button class="input-btn jsCompensationEditBtn">EDIT</button>
+                </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Rate Period:</label>
-                <select class="workerinfo-item-select jsRatePeriodSelect">
-                    <option class="workerinfo-item-options" data-id=1>Daily</option>
-                    <option class="workerinfo-item-options" data-id=2>Monthly</option>
-                </select>
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <select name="RatePeriod" class="workerinfo-item-select jsCompensationSelect jsRatePeriod">
+                        <option class="workerinfo-item-options" data-id=1>Daily</option>
+                        <option class="workerinfo-item-options" data-id=2>Monthly</option>
+                    </select>
+                    <button class="input-btn jsCompensationEditBtn">EDIT</button>
+                </div>
             </div>
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Allowance :</label>
-                <input name="Allowance" class="workerinfo-item-input validate jsAllowanceInput" value="0.00" />
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <input name="Allowance" class="workerinfo-item-input jsAllowance jsCompensationInput" data-name="Allowance" value="0.00" />
+                    <button class="input-btn jsCompensationEditBtn">EDIT</button>
+                </div>
             </div>
 
             <div class="workerinfo-item-cont">
                 <label class="workerinfo-item-label">Fixed Salary? :</label>
-                <select class="workerinfo-item-select jsIsSalaryFixedSelect disable-input" disabled>
-                    <option class="workerinfo-item-options" value="0" data-id=0>No</option>
-                    <option class="workerinfo-item-options" value="1" data-id=1>Yes</option>
-                </select>
+                <div class="workerinfo-input-icon-cont jsInputBtnCont">
+                    <select name="IsFixedSalary" class="workerinfo-item-select jsCompensationSelect jsIsFixedSalary">
+                        <option class="workerinfo-item-options" value="0" data-id=0>No</option>
+                        <option class="workerinfo-item-options" value="1" data-id=1>Yes</option>
+                    </select>
+                    <button class="input-btn jsCompensationEditBtn">EDIT</button>
+                </div>
             </div>
 
         </div>

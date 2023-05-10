@@ -33,7 +33,7 @@
 
 .workerinfo-item-cont {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 100px 1fr;
     width: 100%;
     margin-top: 1em;
     /*grid-gap:10px;*/
@@ -41,7 +41,7 @@
 
 .workerinfo-input-icon-cont {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 60px;
     border: 1px solid #505050;
     background: rgba(100,100,100,.1);
     border-radius:5px;
@@ -61,8 +61,8 @@
 }
 
 .workerinfo-item-input {
-    padding: .5em;
-    font-size: 1em;
+    padding: .4em;
+    font-size: .9em;
     border: none;
     background: none;
     border: none;
@@ -76,6 +76,8 @@
     color: #808080;
     width: 100%;
     padding: 0 .7em;
+    position:relative;
+    font-size:.6em;
 }
 
     .input-btn:hover {
@@ -136,4 +138,9 @@
 
 .workerinfo-item-options {
     color: #222;
+}
+
+.workers-btn{
+    position:relative;
+    width:100%;
 }

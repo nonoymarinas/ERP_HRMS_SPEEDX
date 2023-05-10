@@ -9,9 +9,8 @@ namespace BusinessModel
 {
 	public class ReturnUpdateContactModel : DBStandardReturn
 	{
-		public int MasterPersonID { get; set; }
-		public string? MobileNumber { get; set; }
-		public string? LandlineNumber { get; set; }
-		public string? EmailAddress { get; set; }
-	}
+        public int MasterPersonID { get; set; }
+        public string? PropertyName { get; set; }
+        public string? PropertyValue { get; set; }
+    }
 }

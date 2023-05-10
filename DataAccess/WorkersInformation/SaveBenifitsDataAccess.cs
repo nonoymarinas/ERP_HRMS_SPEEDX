@@ -7,9 +7,9 @@ namespace DataAccess
 	public class SaveBenifitsDataAccess : ISaveBenifits
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamBenifitsModel _benifits;
+		private readonly ParamBenifitsModel? _benifits;
 
-		public SaveBenifitsDataAccess(ConnectionSettings connection, ParamBenifitsModel benifits)
+		public SaveBenifitsDataAccess(ConnectionSettings connection, ParamBenifitsModel? benifits)
 		{
 			_connection = connection;
 			_benifits = benifits;

@@ -8,5 +8,11 @@ namespace ERP_HRMS.Controllers
         {
             return View();
         }
-    }
+		public IActionResult spinner()
+        {
+            return View();
+        }
+
+	}
+    
 }

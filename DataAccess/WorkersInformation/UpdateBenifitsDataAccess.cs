@@ -7,9 +7,9 @@ namespace DataAccess
 	public class UpdateBenifitsDataAccess : IUpdateBenifits
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamBenifitsModel _benifits;
+		private readonly ParamUpdateBenifitsModel? _benifits;
 
-		public UpdateBenifitsDataAccess(ConnectionSettings connection, ParamBenifitsModel benifits)
+		public UpdateBenifitsDataAccess(ConnectionSettings connection, ParamUpdateBenifitsModel? benifits)
 		{
 			_connection = connection;
 			_benifits = benifits;
@@ -32,19 +32,12 @@ namespace DataAccess
 					cmd.Parameters.Add(new SqlParameter("@MasterPersonID", SqlDbType.Int));
 					cmd.Parameters["@MasterPersonID"].Value = _benifits.MasterPersonID;
 
-					cmd.Parameters.Add(new SqlParameter("@UMIDNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@UMIDNumber"].Value = _benifits.UMIDNumber;
+					cmd.Parameters.Add(new SqlParameter("@PropertyName", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyName"].Value = _benifits.PropertyName;
 
-					cmd.Parameters.Add(new SqlParameter("@SSSNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@SSSNumber"].Value = _benifits.SSSNumber;
+					cmd.Parameters.Add(new SqlParameter("@PropertyValue", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyValue"].Value = _benifits.PropertyValue;
 
-					cmd.Parameters.Add(new SqlParameter("@PagIbigNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@PagibIgNumber"].Value = _benifits.PagIbigNumber;
-
-					cmd.Parameters.Add(new SqlParameter("@PhilHealthNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@PhilHealthNumber"].Value = _benifits.PhilHealthNumber;
-
-					
 					using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
 					{
 						//Check for errors and if true, retreive the error message!
@@ -64,10 +57,8 @@ namespace DataAccess
 							{
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
-								dataModel.UMIDNumber = reader["UMIDNumber"].ToString();
-								dataModel.SSSNumber = reader["SSSNumber"].ToString();
-								dataModel.PagibigNumber = reader["PagibigNumber"].ToString();
-								dataModel.PhilhealthNumber = reader["PhilhealthNumber"].ToString();
+								dataModel.PropertyName = reader["PropertyName"].ToString();
+								dataModel.PropertyValue = reader["PropertyValue"].ToString();
 								dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
 							}
 							

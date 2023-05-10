@@ -7,9 +7,9 @@ namespace DataAccess
 	public class UpdateContactsDataAccess : IUpdateContacts
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamContactModel _contacts;
+		private readonly ParamUpdateContactsModel? _contacts;
 
-		public UpdateContactsDataAccess(ConnectionSettings connection, ParamContactModel contacts)
+		public UpdateContactsDataAccess(ConnectionSettings connection, ParamUpdateContactsModel? contacts)
 		{
 			_connection = connection;
 			_contacts = contacts;
@@ -30,17 +30,13 @@ namespace DataAccess
 					cmd.CommandType = CommandType.StoredProcedure;
 
 					cmd.Parameters.Add(new SqlParameter("@MasterPersonID", SqlDbType.Int));
-					cmd.Parameters["@MasterPersonID"].Value = _contacts.MasterPersonID;
+					cmd.Parameters["@MasterPersonID"].Value = _contacts?.MasterPersonID;
 
-					cmd.Parameters.Add(new SqlParameter("@MobileNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@MobileNumber"].Value = _contacts.MobileNumber;
+					cmd.Parameters.Add(new SqlParameter("@PropertyName", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyName"].Value = _contacts?.PropertyName;
 
-					cmd.Parameters.Add(new SqlParameter("@LandlineNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@LandlineNumber"].Value = _contacts.LandlineNumber;
-
-					cmd.Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar));
-					cmd.Parameters["@EmailAddress"].Value = _contacts.EmailAddress;
-
+					cmd.Parameters.Add(new SqlParameter("@PropertyValue", SqlDbType.NVarChar));
+					cmd.Parameters["@PropertyValue"].Value = _contacts?.PropertyValue;
 
 					using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
 					{
@@ -60,12 +56,11 @@ namespace DataAccess
 							if (reader.HasRows)
 							{
 								reader.Read();
-								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
-								dataModel.MobileNumber = reader["MobileNumber"].ToString();
-								dataModel.LandlineNumber = reader["LandlineNumber"].ToString();
-								dataModel.EmailAddress = reader["EmailAddress"].ToString();
-								dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
-							}
+                                dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
+                                dataModel.PropertyName = reader["PropertyName"].ToString();
+                                dataModel.PropertyValue = reader["PropertyValue"].ToString();
+                                dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
+                            }
 
 						}
 					}

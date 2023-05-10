@@ -7,9 +7,9 @@ namespace DataAccess
 	public class SaveContactsDataAccess : ISaveContacts
 	{
 		private readonly ConnectionSettings _connection;
-		private readonly ParamContactModel _contacts;
+		private readonly ParamContactModel? _contacts;
 
-		public SaveContactsDataAccess(ConnectionSettings connection, ParamContactModel contacts)
+		public SaveContactsDataAccess(ConnectionSettings connection, ParamContactModel? contacts)
 		{
 			_connection = connection;
 			_contacts = contacts;
@@ -36,7 +36,7 @@ namespace DataAccess
 					cmd.Parameters["@MobileNumber"].Value = _contacts.MobileNumber;
 
 					cmd.Parameters.Add(new SqlParameter("@LandlineNumber", SqlDbType.NVarChar));
-					cmd.Parameters["@LandlineNumber"].Value = _contacts.LandlineNumber;
+					cmd.Parameters["@LandlineNumber"].Value = _contacts.LandLineNumber;
 
 					cmd.Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar));
 					cmd.Parameters["@EmailAddress"].Value = _contacts.EmailAddress;
@@ -62,7 +62,7 @@ namespace DataAccess
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
 								dataModel.MobileNumber = reader["MobileNumber"].ToString();
-								dataModel.LandlineNumber = reader["LandlineNumber"].ToString();
+								dataModel.LandLineNumber = reader["LandlineNumber"].ToString();
 								dataModel.EmailAddress = reader["EmailAddress"].ToString();
 								dataModel.StatusCodeNumber = Convert.ToInt32(reader["StatusCodenumber"]);
 							}

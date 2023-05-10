@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace BusinessModel
 {
-	public class ParamContactModel
-	{
+	public class ParamUpdateBenifitsModel
+    {
 		public int MasterPersonID { get; set; }
-		public string? MobileNumber { get; set; }
-		public string? LandLineNumber { get; set; }
-		public string? EmailAddress { get; set; }
+		public string? PropertyName { get; set; }
+		public string? PropertyValue { get; set; }
 	}
 }

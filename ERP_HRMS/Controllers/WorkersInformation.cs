@@ -41,9 +41,9 @@ namespace ERP_HRMS.Controllers
 		}
 
 		[Route("update-benifits")]
-		async public Task<IActionResult> UpdateBenifits(ParamBenifitsModel benifits)
+		async public Task<IActionResult> UpdateBenifits(ParamUpdateBenifitsModel benifit)
 		{
-			WorkersBenifitsLogic dataLogic = new(_connection, benifits);
+			WorkersBenifitsLogic dataLogic = new(_connection, benifit);
 			return Json(await dataLogic.UpdateBenifits());
 		}
 
@@ -56,7 +56,7 @@ namespace ERP_HRMS.Controllers
 		}
 
 		[Route("update-contacts")]
-		async public Task<IActionResult> UpdateContacts(ParamContactModel contacts)
+		async public Task<IActionResult> UpdateContacts(ParamUpdateContactsModel contacts)
 		{
 			WorkersContactsLogic dataLogic = new(_connection, contacts);
 			return Json(await dataLogic.UpdateContacts());

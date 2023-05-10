@@ -19,11 +19,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Signin}/{action=LoginWindow}/{id?}");
-//pattern: "{controller=Demo}/{action=SVGDemo1}/{id?}");
 
+pattern: "{controller=Signin}/{action=LoginWindow}/{id?}");
+//pattern: "{controller=Demo}/{action=SVGDemo1}/{id?}");
+//pattern: "{controller=Demo}/{action=spinner}/{id?}");
 
 app.Run();

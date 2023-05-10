@@ -11,7 +11,7 @@ namespace BusinessModel
 	{
 		public int MasterPersonID { get; set; }
 		public string? MobileNumber { get; set; }
-		public string? LandlineNumber { get; set; }
+		public string? LandLineNumber { get; set; }
 		public string? EmailAddress { get; set; }
 	}
 }

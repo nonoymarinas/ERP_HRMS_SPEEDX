@@ -517,3 +517,39 @@ function formatDate(date) {
 
     return (date.getFullYear() + "-" + month + "-" + day)
 }
+
+//global-workers information sheet
+const localData = {
+    personalInfo: {
+        masterPersonID: 0,
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        dateOfBirth: '',
+        isActive: false
+    },
+    benifits: {
+        umidNumber: '',
+        sssNumber: '',
+        pagIbigNumber: '',
+        philHealthNumber: ''
+    },
+
+    contacts: {
+        mobileNumber: '',
+        landLineNumber: '',
+        emailAddress: ''
+    },
+    compensation: {
+        ratePeriodID: '',
+        isSalaryFixedID: '',
+        currencyID: '',
+        hourPerDay: '',
+        dayPerMonth: '',
+        basicSalary: '',
+        allowance: ''
+    }
+}
+
+//global-local variables
+let isPersonInfoSave = false;
