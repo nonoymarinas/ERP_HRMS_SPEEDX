@@ -1,16 +1,13 @@
 ﻿async function workersCompensation() {
     //4. COMPENSATION *****************************************************************************//
-    function isCompensationInputValid() {
-        //--check if data empty or not
-        let validate = document.querySelector('.jsWorkerInfoItemCompensationMainCont').querySelectorAll('.validate');
-        let isValid = true;
-        for (let i = 0; i < validate.length; i++) {
-            if (isNullOrWhiteSpace(validate[i].value)) {
-                validate[i].classList.add('invalid');
-                isValid = false;
-            } else {
-                validate[i].classList.remove('invalid');
-            }
+    function isCompensationRequiredFieldsComplete() {
+        let isValid = true
+        const jsBasicSalary = document.querySelector('.jsBasicSalary');
+        if (isNullOrWhiteSpace(jsBasicSalary.value)) {
+            jsBasicSalary.classList.add('invalid');
+            isValid = false
+        } else {
+            jsBasicSalary.classList.remove('invalid');
         }
         return isValid;
     }
@@ -130,7 +127,7 @@
         }
 
         //validate input
-        if (!isCompensationInputValid()) return;
+        if (!isCompensationRequiredFieldsComplete()) return;
 
         //validate regex
         if (!isRegexCompensationValidationPassed()) return;
@@ -211,6 +208,59 @@
             //activate cancel button
             compensationCancelBtn()
         }
+
+        async function clickCompensationUpdateBtn(e) {
+           
+            //validation of input data
+            if (e.target.getAttribute('name') == 'BasicSalary') {
+                if (!isCompensationRequiredFieldsComplete()) return;
+            }
+            //validate regex
+            if (!isRegexCompensationValidationPassed()) return;
+
+            //spinner on
+            e.target.appendChild(spinnerType01());
+
+            //update data via fetch api
+            
+            const jsCompensation = e.target.closest('.jsInputBtnCont').querySelector('.jsCompensation');
+            const PropertyName = jsCompensation.getAttribute('name');
+
+            let PropertyValue;
+            if (jsCompensation == 'RatePeriod') {
+                PropertyValue = jsCompensation.selectedOptions[0].getAttribute('data-id');
+            } else if (jsCompensation == 'IsSalaryFixed') {
+                PropertyValue = jsCompensation.selectedOptions[0].getAttribute('data-id');
+            }
+            else {
+                PropertyValue = jsCompensation.value;
+            }
+            
+
+            const formData = new FormData();
+            formData.append('MasterPersonID', localData.personalInfo.masterPersonID)
+            formData.append('PropertyName', PropertyName)
+            formData.append('PropertyValue', PropertyValue)
+
+            const options = {
+                method: 'POST',
+                body: formData
+            }
+
+            let data = await fetchData.postData('update-compensation', options)
+
+            console.log(data)
+
+            // remove spinner
+            e.target.querySelector('.jsSpinnerCont').remove();
+
+            //validate return data
+            if (!data) return
+
+            //update data and change elemenet appearance
+            localData.compensation[jsCompensation.getAttribute('data-name')] = data.propertyValue;
+        }
+
         function compensationCancelBtn() {
             const jsCompensationCancelBtn = document.querySelector('.jsCompensationCancelBtn');
             jsCompensationCancelBtn.addEventListener('click', clickCompensationCancelBtn);
@@ -250,6 +300,7 @@
                 //remove eventListener cancel button
                 jsCompensationCancelBtn.removeEventListener('click', clickCompensationCancelBtn);
                 //disabled cancel button
+
                 jsCompensationCancelBtn.classList.remove('workerinfo-btn');
                 jsCompensationCancelBtn.classList.add('disable-btn');
             }

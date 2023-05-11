@@ -68,6 +68,13 @@ namespace ERP_HRMS.Controllers
 			WorkersCompensationLogic dataLogic = new(_connection, compensation);
 			return Json(await dataLogic.SaveCompensation());
 		}
-	}
+
+        [Route("update-compensation")]
+        async public Task<IActionResult> UpdateCompensation(ParamUpdateCompensationModel updateCompensation)
+        {
+            WorkersCompensationLogic dataLogic = new(_connection, updateCompensation);
+            return Json(await dataLogic.UpdateCompensation());
+        }
+    }
 
 }

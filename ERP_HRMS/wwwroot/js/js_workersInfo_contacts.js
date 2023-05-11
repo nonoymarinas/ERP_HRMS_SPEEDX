@@ -209,7 +209,7 @@ async function workersContact() {
             //check regex
             if (!isRegexContactValidationPassed()) return
 
-            //update data via fetch api
+            //spinner on
             e.target.appendChild(spinnerType01());
 
             //update data via fetch api
