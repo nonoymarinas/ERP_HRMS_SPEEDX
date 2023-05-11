@@ -135,13 +135,23 @@
         //validate regex
         if (!isRegexCompensationValidationPassed()) return;
 
+        //spinner on
+        jsCompensationSaveBtn.appendChild(spinnerType01());
 
         //fetch data
         const options = collectCompensationData()
         const data = await fetchData.postData('save-compensation', options)
+
+        //spinner off
+        jsCompensationSaveBtn.querySelector('.jsSpinnerCont').remove();
+
+        //validate return data
+        if (data) {
+            alertCustom.isConfirmedOk(alertContainer.successAlert, alertMessages.saveSuccessfull)
+        } else {
+            return
+        }
         console.log(data)
-        //validate data
-        if (!data) return;
 
         //update local data
         localData.compensation.ratePeriodID = data.ratePeriodID;
@@ -158,6 +168,97 @@
         disableCompensationSaveAndEnableEditBtn()
 
         //edit and update should run only after saved is done, thats why it located in here
-        //await contactsEditAndUpdate()
+        await compensationEditAndUpdate()
+    }
+
+
+    async function compensationEditAndUpdate() {
+        //select all edit buttons
+        const jsCompensationEditBtns = document.querySelectorAll('.jsCompensationEditBtn');
+        for (let i = 0; i < jsCompensationEditBtns.length; i++) {
+            jsCompensationEditBtns[i].addEventListener('click', clickCompensationEditUpdateBtn);
+            async function clickCompensationEditUpdateBtn(e) {
+                if (jsCompensationEditBtns[i].classList.contains('jsCompensationUpdateBtn')) {
+                    await clickCompensationUpdateBtn(e)
+                } else {
+                    clickCompensationEditBtn(e)
+                }
+            }
+        }
+
+        function clickCompensationEditBtn(e) {
+            //enable input
+            let jsCompensation = e.target.closest('.jsInputBtnCont').querySelector('.jsCompensation');
+
+            //this will remain disable if rate period is daily
+            const selectedID = jsRatePeriod.selectedOptions[0].getAttribute('data-id');
+            if (jsCompensation.getAttribute('name') == 'IsSalaryFixed' && selectedID==1) {
+                alertCustom.isConfirmedOk(alertContainer.warningAlert, 'Fixed salary is only applicable for monthly!');
+                return;
+            }
+
+            jsCompensation.removeAttribute('disabled');
+            jsCompensation.classList.remove('disable-input');
+
+            
+            //change text edit to update
+            e.currentTarget.textContent = 'UPDATE'
+
+            //insert class for update
+            e.currentTarget.classList.add('jsCompensationUpdateBtn');
+            e.currentTarget.classList.add('update-btn-active');
+
+            //activate cancel button
+            compensationCancelBtn()
+        }
+        function compensationCancelBtn() {
+            const jsCompensationCancelBtn = document.querySelector('.jsCompensationCancelBtn');
+            jsCompensationCancelBtn.addEventListener('click', clickCompensationCancelBtn);
+
+            function clickCompensationCancelBtn() {
+
+                //collect all pers info input
+                const jsCompensations = document.querySelectorAll('.jsCompensation');
+
+                //loop through input
+                for (let i = 0; i < jsCompensations.length; i++) {
+                    //find active input by searching disabled attribute
+                    if (!jsCompensations[i].hasAttribute('disabled')) {
+                        
+                        //disable inputs
+                        jsCompensations[i].setAttribute('disabled', true);
+                        jsCompensations[i].classList.add('disable-input');
+
+                        //change text update to edit
+                        const jsCompensationEditBtn = jsCompensations[i].closest('.jsInputBtnCont').querySelector('.jsCompensationEditBtn');
+                        jsCompensationEditBtn.textContent = 'EDIT';
+                        jsCompensationEditBtn.classList.remove('jsCompensationUpdateBtn');
+                        jsCompensationEditBtn.classList.remove('update-btn-active');
+
+
+                        //retrieve records
+                        const dataName = jsContactsInputs[i].getAttribute('data-name');
+                        jsContactsInputs[i].value = localData.contacts[dataName];
+                    }
+                }
+
+                //disable cancel button
+                disableCancelBtn()
+            }
+
+            function disableCancelBtn() {
+                //remove eventListener cancel button
+                jsCompensationCancelBtn.removeEventListener('click', clickCompensationCancelBtn);
+                //disabled cancel button
+                jsCompensationCancelBtn.classList.remove('workerinfo-btn');
+                jsCompensationCancelBtn.classList.add('disable-btn');
+            }
+
+            //enable cancel button
+            jsCompensationCancelBtn.classList.add('workerinfo-btn');
+            jsCompensationCancelBtn.classList.remove('disable-btn');
+
+            return disableCancelBtn;
+        }
     }
 }

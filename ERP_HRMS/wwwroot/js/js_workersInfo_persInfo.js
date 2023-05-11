@@ -238,6 +238,7 @@
                         const jsWorkerInfoEditBtn = jsPersInfoInputs[i].closest('.jsInputBtnCont').querySelector('.jsWorkerInfoEditBtn');
                         jsWorkerInfoEditBtn.textContent = 'EDIT';
                         jsWorkerInfoEditBtn.classList.remove('jsWorkerInfoUpdateBtn');
+                        jsWorkerInfoEditBtn.classList.remove('update-btn-active');
 
                         //change local data isActive to true
                         localData.personalInfo.isActive = false;

@@ -112,7 +112,7 @@
 
 .workerinfo-persinfo-title-cont {
     display: grid;
-    grid-template-columns: 1fr 60px 60px 60px;
+    grid-template-columns: 1fr 60px 60px;
     width: 100%;
     /*background:#d5d5d5;*/
     /*color:#222;*/

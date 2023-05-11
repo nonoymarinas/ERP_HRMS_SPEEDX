@@ -278,6 +278,7 @@ async function workersContact() {
                         const jsContactsEditBtn = jsContactsInputs[i].closest('.jsInputBtnCont').querySelector('.jsContactsEditBtn');
                         jsContactsEditBtn.textContent = 'EDIT';
                         jsContactsEditBtn.classList.remove('jsContactsUpdateBtn');
+                        jsContactsEditBtn.classList.remove('update-btn-active');
 
 
                         //retrieve records

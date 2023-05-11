@@ -281,6 +281,7 @@ async function workersBenifits() {
                         const jsWorkerInfoEditBtn = jsBenifitsInputs[i].closest('.jsInputBtnCont').querySelector('.jsBenifitsEditBtn');
                         jsWorkerInfoEditBtn.textContent = 'EDIT';
                         jsWorkerInfoEditBtn.classList.remove('jsBenifitsUpdateBtn');
+                        jsWorkerInfoEditBtn.classList.remove('update-btn-active');
 
 
                         //retrieve records
