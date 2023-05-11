@@ -542,7 +542,7 @@ const localData = {
     },
     compensation: {
         ratePeriodID: '',
-        isSalaryFixedID: '',
+        isSalaryFixed: '',
         currencyID: '',
         hourPerDay: '',
         dayPerMonth: '',

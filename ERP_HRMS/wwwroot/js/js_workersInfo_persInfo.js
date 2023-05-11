@@ -49,8 +49,7 @@
         //enable edit button
         const jsWorkerInfoEditBtns = document.querySelectorAll('.jsWorkerInfoEditBtn');
         for (let i = 0; i < jsWorkerInfoEditBtns.length; i++) {
-            jsWorkerInfoEditBtns[i].classList.add('workerinfo-btn');
-            jsWorkerInfoEditBtns[i].classList.remove('disable-btn');
+            jsWorkerInfoEditBtns[i].classList.add('edit-btn-active');
         }
 
         //disable save button
@@ -153,6 +152,7 @@
 
             //insert class for update
             e.currentTarget.classList.add('jsWorkerInfoUpdateBtn');
+            e.currentTarget.classList.add('update-btn-active');
 
             //change local data isActive to true
             localData.personalInfo.isActive = true;
@@ -204,6 +204,7 @@
             //change text update to edit
             e.target.textContent = 'EDIT'
             e.target.classList.remove('jsWorkerInfoUpdateBtn');
+            e.target.classList.remove('update-btn-active');
 
             //disable input
             input.setAttribute('disabled', true);

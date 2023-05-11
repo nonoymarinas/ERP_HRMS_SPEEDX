@@ -1,6 +1,7 @@
 ﻿* {
     font-family: Poppins,SansSerif,Verdana, Geneva, Tahoma;
 }
+
 .workerinfo-main-cont {
     width: 100%;
     height: 100%;
@@ -44,7 +45,7 @@
     grid-template-columns: 1fr 60px;
     border: 1px solid #505050;
     background: rgba(100,100,100,.1);
-    border-radius:5px;
+    border-radius: 5px;
 }
 
 .item-svg-icon {
@@ -67,7 +68,7 @@
     background: none;
     border: none;
     color: #fff;
-    outline:none;
+    outline: none;
 }
 
 .input-btn {
@@ -76,19 +77,38 @@
     color: #808080;
     width: 100%;
     padding: 0 .7em;
-    position:relative;
-    font-size:.6em;
+    position: relative;
+    font-size: .6em;
 }
 
-    .input-btn:hover {
-        background: #505050;
-        color: #d5d5d5;
+.edit-btn-active {
+    background: none;
+    border: none;
+    color: #179009;
+    width: 100%;
+    padding: 0 .7em;
+    position: relative;
+    font-size: .6em;
+}
+    .edit-btn-active:hover {
+        background: #606060;
+        color: #999;
     }
 
-    .input-btn:active {
-        background: #606060;
-        color: #d5d5d5;
-    }
+.edit-btn-active:active {
+    background: #606060;
+    color: #d5d5d5;
+}
+
+.update-btn-active {
+    color: #a31313;
+}
+.update-btn-active:hover {
+    color: #a31313;
+}
+.update-btn-active:active {
+    color: #a31313;
+}
 
 .workerinfo-persinfo-title-cont {
     display: grid;
@@ -120,6 +140,12 @@
         color: #111;
     }
 
+    .workerinfo-btn:active {
+        border: #808080;
+        background: #d5d5d5;
+        color: #111;
+    }
+
 .workerinfo-sub-title-text {
     padding: .3em;
     font-size: 1em;
@@ -127,12 +153,12 @@
 }
 
 .workerinfo-item-select {
-    padding: .3em;
-    font-size: 1em;
+    padding: .4em;
+    font-size: .85em;
     border-radius: 5px;
     border: none;
-    background: rgba(100,100,100,.1);
-    border: 1px solid #505050;
+    background: none;
+    border: none;
     color: #fff;
 }
 
@@ -140,7 +166,7 @@
     color: #222;
 }
 
-.workers-btn{
-    position:relative;
-    width:100%;
+.workers-btn {
+    position: relative;
+    width: 100%;
 }

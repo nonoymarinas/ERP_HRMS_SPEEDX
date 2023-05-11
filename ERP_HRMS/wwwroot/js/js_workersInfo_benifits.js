@@ -94,8 +94,7 @@ async function workersBenifits() {
         //enable edit button
         const jsBenifitsEditBtns = document.querySelectorAll('.jsBenifitsEditBtn');
         for (let i = 0; i < jsBenifitsEditBtns.length; i++) {
-            jsBenifitsEditBtns[i].classList.add('workerinfo-btn');
-            jsBenifitsEditBtns[i].classList.remove('disable-btn');
+            jsBenifitsEditBtns[i].classList.add('edit-btn-active');
         }
 
         //disable save button
@@ -195,6 +194,7 @@ async function workersBenifits() {
 
             //insert class for update
             e.currentTarget.classList.add('jsBenifitsUpdateBtn');
+            e.currentTarget.classList.add('update-btn-active');
 
             //activate cancel button
             benifitsCancelBtn()
@@ -247,6 +247,7 @@ async function workersBenifits() {
             //change text update to edit
             e.target.textContent = 'EDIT'
             e.target.classList.remove('jsBenifitsUpdateBtn');
+            e.target.classList.remove('update-btn-active');
 
             //disable input
             jsBenifitsInput.setAttribute('disabled', true);

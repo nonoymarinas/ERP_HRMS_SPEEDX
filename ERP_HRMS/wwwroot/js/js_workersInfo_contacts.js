@@ -87,10 +87,9 @@ async function workersContact() {
 
     function disableContactSaveAndEnableEditBtn() {
         //enable edit button
-        const jsContactEditBtns = document.querySelectorAll('.jsContactEditBtn');
+        const jsContactEditBtns = document.querySelectorAll('.jsContactsEditBtn');
         for (let i = 0; i < jsContactEditBtns.length; i++) {
-            jsContactEditBtns[i].classList.add('workerinfo-btn');
-            jsContactEditBtns[i].classList.remove('disable-btn');
+            jsContactEditBtns[i].classList.add('edit-btn-active');
         }
 
         //disable save button
@@ -172,7 +171,7 @@ async function workersContact() {
         for (let i = 0; i < jsContactsEditBtns.length; i++) {
             jsContactsEditBtns[i].addEventListener('click', clickContactsEditUpdateBtn)
             async function clickContactsEditUpdateBtn(e) {
-                if (jsContactsEditBtns[i].classList.contains('jsContactUpdateBtn')) {
+                if (jsContactsEditBtns[i].classList.contains('jsContactsUpdateBtn')) {
                     await clickContactUpdateBtn(e)
                 } else {
                     clickContactEditBtn(e)
@@ -192,7 +191,8 @@ async function workersContact() {
             e.currentTarget.textContent = 'UPDATE'
 
             //insert class for update
-            e.currentTarget.classList.add('jsContactUpdateBtn');
+            e.currentTarget.classList.add('jsContactsUpdateBtn');
+            e.currentTarget.classList.add('update-btn-active');
 
             //activate cancel button
             contactCancelBtn()
@@ -243,7 +243,8 @@ async function workersContact() {
 
             //change text update to edit
             e.target.textContent = 'EDIT'
-            e.target.classList.remove('jsBenifitsUpdateBtn');
+            e.target.classList.remove('jsContactsUpdateBtn');
+            e.target.classList.remove('update-btn-active');
 
             //disable input
             jsContactsInput.setAttribute('disabled', true);
@@ -276,7 +277,7 @@ async function workersContact() {
                         //change text update to edit
                         const jsContactsEditBtn = jsContactsInputs[i].closest('.jsInputBtnCont').querySelector('.jsContactsEditBtn');
                         jsContactsEditBtn.textContent = 'EDIT';
-                        jsContactsEditBtn.classList.remove('jsContactUpdateBtn');
+                        jsContactsEditBtn.classList.remove('jsContactsUpdateBtn');
 
 
                         //retrieve records
