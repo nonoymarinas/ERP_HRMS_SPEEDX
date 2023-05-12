@@ -227,10 +227,12 @@
             const PropertyName = jsCompensation.getAttribute('name');
 
             let PropertyValue;
-            if (jsCompensation == 'RatePeriod') {
+            if (PropertyName == 'RatePeriod') {
                 PropertyValue = jsCompensation.selectedOptions[0].getAttribute('data-id');
-            } else if (jsCompensation == 'IsSalaryFixed') {
+                console.log(PropertyValue)
+            } else if (PropertyName == 'IsSalaryFixed') {
                 PropertyValue = jsCompensation.selectedOptions[0].getAttribute('data-id');
+                console.log(PropertyValue)
             }
             else {
                 PropertyValue = jsCompensation.value;
