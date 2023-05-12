@@ -303,8 +303,17 @@
 
                        
                         //retrieve records
-                        const dataName = jsCompensations[i].getAttribute('data-name');
-                        jsCompensations[i].value = localData.compensation[dataName];
+                        //const dataName = jsCompensations[i].getAttribute('data-name');
+                        //jsCompensations[i].value = localData.compensation[dataName];
+
+                        if (jsCompensations[i].getAttribute('name') == 'RatePeriod') {
+                            const RatePeriod = localData.compensation.ratePeriodID;
+                            if (parseInt(RatePeriod) == 1) {
+                                jsCompensations[i].options[0].setAttribute('selected', true)
+                            } else if (parseInt(RatePeriod) == 2) {
+                                jsCompensations[i].options[1].setAttribute('selected', true)
+                            }
+                        }
                     }
                 }
 
