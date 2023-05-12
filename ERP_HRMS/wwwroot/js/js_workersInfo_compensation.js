@@ -248,17 +248,33 @@
             }
 
             let data = await fetchData.postData('update-compensation', options)
-
+            console.log('ok')
             console.log(data)
 
             // remove spinner
             e.target.querySelector('.jsSpinnerCont').remove();
 
             //validate return data
-            if (!data) return
-
+            if (!data) {
+                return
+            } else if (data.hasError) {
+                return
+            }
+            
             //update data and change elemenet appearance
             localData.compensation[jsCompensation.getAttribute('data-name')] = data.propertyValue;
+
+            //change text update to edit
+            e.target.textContent = 'EDIT'
+            e.target.classList.remove('jsCompensationUpdateBtn');
+            e.target.classList.remove('update-btn-active');
+
+            //disable input
+            jsCompensation.setAttribute('disabled', true);
+            jsCompensation.classList.add('disable-input');
+
+            //disable cancel, from closure function
+            compensationCancelBtn()();
         }
 
         function compensationCancelBtn() {
@@ -285,10 +301,10 @@
                         jsCompensationEditBtn.classList.remove('jsCompensationUpdateBtn');
                         jsCompensationEditBtn.classList.remove('update-btn-active');
 
-
+                       
                         //retrieve records
-                        const dataName = jsContactsInputs[i].getAttribute('data-name');
-                        jsContactsInputs[i].value = localData.contacts[dataName];
+                        const dataName = jsCompensations[i].getAttribute('data-name');
+                        jsCompensations[i].value = localData.compensation[dataName];
                     }
                 }
 
