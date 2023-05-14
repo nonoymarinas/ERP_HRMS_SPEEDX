@@ -91,17 +91,24 @@ async function clickMenuHomeIcon() {
 
 async function clickMainMenuNewEmployee() {
     const jsSublayout01ContentSubCont = document.querySelector('.jsSublayout01ContentSubCont');
-    const view = await fetchData.viewData('/WorkersInformation/MainPage');
+    const view = await fetchData.viewData('employee-detail-page');
 
-    const jsHomeMainCont = view.querySelector('.jsWorkersInfoMainCont');
+    const jsWorkersInfoMainCont = view.querySelector('.jsWorkersInfoMainCont');
     jsSublayout01ContentSubCont.innerHTML = '';
-    jsSublayout01ContentSubCont.appendChild(jsHomeMainCont);
+    jsSublayout01ContentSubCont.appendChild(jsWorkersInfoMainCont);
 
     await newEmployee();
 }
 
 async function clickMainMenuAllEmployee() {
+    const jsSublayout01ContentSubCont = document.querySelector('.jsSublayout01ContentSubCont');
+    const view = await fetchData.viewData('/AllEmployee/MainPage');
 
+    const jsAllEmployeeMainCont = view.querySelector('.jsAllEmployeeMainCont');
+    jsSublayout01ContentSubCont.innerHTML = '';
+    jsSublayout01ContentSubCont.appendChild(jsAllEmployeeMainCont);
+
+    await allEmployee();
 }
 
 function clickMainMenuLiToogleDisplay(e) {

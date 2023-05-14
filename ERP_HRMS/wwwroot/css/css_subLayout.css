@@ -161,9 +161,6 @@ body {
     }
 }
 
-.display-none {
-    display: none;
-}
 
 .sublayout01-content-sub-cont {
     grid-column-start: 2;

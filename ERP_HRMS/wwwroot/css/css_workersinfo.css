@@ -1,7 +1,21 @@
 ﻿* {
+   
     font-family: Poppins,SansSerif,Verdana, Geneva, Tahoma;
 }
 
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/*Change text in autofill textbox*/
+/*input:-webkit-autofill {
+    -webkit-text-fill-color: none !important;
+}*/
 .workerinfo-main-cont {
     width: 100%;
     height: 100%;
@@ -19,6 +33,7 @@
     display: grid;
     grid-template-columns: 1fr 40px;
     width: 100%;
+    padding-bottom:7px;
 }
 
 .workerinfo-item-main-cont {
@@ -26,10 +41,12 @@
 }
 
 .workerinfo-title-text {
+    align-self:center;
     font-size: 1.2em;
 }
 
 .workerinfo-title-close {
+    justify-self:center;
 }
 
 .workerinfo-item-cont {
@@ -39,7 +56,17 @@
     margin-top: 1em;
     /*grid-gap:10px;*/
 }
-
+.workerinfo-emp-number-cont {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    width: 100%;
+    margin-top: 1em;
+    /*padding-right:1em;*/
+}
+.employee-number-text{
+    color:#ffffff;
+    justify-self:self-end
+}
 .workerinfo-input-icon-cont {
     display: grid;
     grid-template-columns: 1fr 60px;
@@ -169,4 +196,26 @@
 .workers-btn {
     position: relative;
     width: 100%;
+}
+.worker-imageid-main-cont {
+    width:100%;
+    padding:1em 0;
+}
+.worker-imageid-sub-cont{
+    display:flex;
+    justify-content:center;
+    width:160px;
+    height:160px;
+    border:1px solid #fff;
+    padding:1em;
+    border-radius:10px;
+    background:#555;
+}
+.worker-image-svg-cont{
+    height:100%;
+    fill:#ffffff;
+}
+.worker-image-svg-path{
+    fill:#ffffff;
+    stroke-width:2px;
 }

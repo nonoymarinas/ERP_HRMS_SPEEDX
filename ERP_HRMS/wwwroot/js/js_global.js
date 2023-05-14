@@ -482,7 +482,29 @@ const dateFormat = {
         //let formattedDateNow = dd + '/' + mm + '/' + yyyy;
         let formattedDate = `${dd}-${mm}-${yyyy.substring(2, 4)}`;
         return formattedDate
-    }
+    },
+
+    yyyymmddDashed: function (dateString) {
+        const date = new Date(dateString)
+        const yyyy = date.getFullYear().toString();
+        let mmNumber = parseInt(date.getMonth() + 1); // Months start at 0!
+
+        if (mmNumber <= 9) {
+            mmNumber = '0' + mmNumber
+        }
+
+        let mm = dateFormat.monthStringName(mmNumber)
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        //if (mm < 10) mm = '0' + mm;
+
+
+        //let formattedDateNow = dd + '/' + mm + '/' + yyyy;
+        let formattedDate = `${yyyy}-${mmNumber}-${dd}`;
+        return formattedDate
+    },
+
 
 }
 
@@ -522,23 +544,27 @@ function formatDate(date) {
 const localData = {
     personalInfo: {
         masterPersonID: 0,
+        employeeNumber:'',
         firstName: '',
         middleName: '',
         lastName: '',
         dateOfBirth: '',
-        isActive: false
+        isActive: false,
+        isDataSaved: false
     },
     benifits: {
         umidNumber: '',
         sssNumber: '',
         pagIbigNumber: '',
-        philHealthNumber: ''
+        philHealthNumber: '',
+        isDataSaved: false
     },
 
     contacts: {
         mobileNumber: '',
         landLineNumber: '',
-        emailAddress: ''
+        emailAddress: '',
+        isDataSaved: false
     },
     compensation: {
         ratePeriodID: '',
@@ -547,9 +573,60 @@ const localData = {
         hourPerDay: '',
         dayPerMonth: '',
         basicSalary: '',
-        allowance: ''
+        allowance: '',
+        isDataSaved: false
+    }
+}
+
+const allEmployeeLocalData = {
+    personalInfo: {
+        masterPersonID: '',
+        employeeNumber: '',
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        dateOfBirth: '',
+    },
+    benifits: {
+        umidNumber: '',
+        sssNumber: '',
+        pagIbigNumber: '',
+        philHealthNumber: '',
+    },
+
+    contacts: {
+        mobileNumber: '',
+        landLineNumber: '',
+        emailAddress: '',
+    },
+    compensation: {
+        ratePeriodID: '',
+        isSalaryFixed: '',
+        currencyID: '',
+        hourPerDay: '',
+        dayPerMonth: '',
+        basicSalary: '',
+        allowance: '',
     }
 }
 
 //global-local variables
 let isPersonInfoSave = false;
+
+
+const allEmployeeRefData = {
+    getMasterPersonData: async function () {
+        //note: parameters is an integer (1,2,3,..) see database meaning for numbers
+        //for now 1 is for ViewSalesByDate, 2 is ViewSalesByAgent
+        let linkedList;
+        const data = await fetchData.getData('all-employee-data')
+        if (data) {
+            linkedList = new LinkedList(data.masterPersonList[0])
+            for (i = 1; i < data.masterPersonList.length; i++) {
+                linkedList.push(data.masterPersonList[i])
+            }
+        }
+        return linkedList;
+    },
+    
+}

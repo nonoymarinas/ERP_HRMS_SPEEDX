@@ -14,7 +14,7 @@ namespace ERP_HRMS.Controllers
 		{
 			_connection = connection;
 		}
-
+		[Route("employee-detail-page")]
 		public IActionResult MainPage()
         {
             return View();

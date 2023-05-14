@@ -60,6 +60,7 @@ namespace DataAccess
 							{
 								reader.Read();
 								dataModel.MasterPersonID = Convert.ToInt32(reader["MasterPersonID"]);
+								dataModel.EmployeeNumber = reader["EmployeeNumber"].ToString();
 								dataModel.FirstName = reader["FirstName"].ToString();
 								dataModel.MiddleName = reader["MiddleName"].ToString();
 								dataModel.LastName = reader["LastName"].ToString();

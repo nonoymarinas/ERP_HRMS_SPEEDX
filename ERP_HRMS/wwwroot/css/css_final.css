@@ -20,3 +20,15 @@
 .position-relative{
     position:relative;
 }
+
+.display-none {
+    display: none;
+}
+
+.display-grid-col-1fr-60px{
+    grid-template-columns:1fr 60px;
+}
+
+.border-bottom-1px-808080 {
+    border-bottom: 1px solid #808080
+}
