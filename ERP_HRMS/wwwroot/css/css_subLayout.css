@@ -30,10 +30,19 @@ body {
 .sublayout01-main-cont {
     width: 100%;
 }
+.main-layout-header-company-logo {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+}
 
+.company-logo-image {
+    max-height: 50px;
+}
 .sublayout01-header-cont {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr 60px;
     background: #ffd800;
     padding: .3em .5em;
     align-self: center;
