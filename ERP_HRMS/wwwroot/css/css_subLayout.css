@@ -135,6 +135,37 @@ body {
     }
 }
 
+
+.submenu-animate-open {
+    animation: maxWidth100Percent 1s forwards;
+    padding: 0;
+}
+
+.submenu-animate-close {
+    animation: maxHeightZeroPercent 1s forwards;
+    padding: 0;
+    border: none;
+}
+
+@keyframes maxHeightZeroPercent {
+    0% {
+        max-height: 350px;
+    }
+
+    100% {
+        max-height: 0;
+    }
+}
+
+@keyframes maxHeight100Percent {
+    0% {
+        max-height: 0;
+    }
+
+    100% {
+        max-height: 300px;
+    }
+}
 .menu-sub01-ul {
     overflow: hidden;
 }
@@ -170,7 +201,9 @@ body {
     }
 }
 
-
+.main-menu-employee-sub-ul {
+    overflow: hidden;
+}
 .sublayout01-content-sub-cont {
     grid-column-start: 2;
     width: 100%;

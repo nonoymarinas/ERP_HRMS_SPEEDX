@@ -25,7 +25,10 @@
     const jsMainMenuHomeLi = document.querySelector('.jsMainMenuHomeLi');
     jsMainMenuHomeLi.addEventListener('click', clickMenuHomeIcon)
 
-   
+    //click Employee menu
+    const jsMainMenuEmployeeLi = document.querySelector('.jsMainMenuEmployeeLi');
+    jsMainMenuEmployeeLi.addEventListener('click', clickMainMenuEmployee)
+
     //click new employee main menu
     const jsMainMenuNewEmployeeSubLi = document.querySelector('.jsMainMenuNewEmployeeSubLi');
     jsMainMenuNewEmployeeSubLi.addEventListener('click', clickMainMenuNewEmployee)
@@ -48,6 +51,9 @@ function clickBurgerMenu() {
     if (jsSubLayout01MenuSubCont.classList.contains('display-none')) {
         jsSubLayout01MenuSubCont.classList.remove('display-none')
     } else {
+
+        /*if (e.target.classList.contains('jsMainMenuEmployeeLi')) return;*/
+
         jsSubLayout01MenuSubCont.classList.toggle('menu-animate-open')
         jsSubLayout01MenuSubCont.classList.toggle('menu-animate-close')
     }
@@ -87,6 +93,17 @@ async function clickMenuHomeIcon() {
     jsSublayout01ContentSubCont.appendChild(jsHomeMainCont);
 
     await homePage();
+}
+
+async function clickMainMenuEmployee(e) {
+    console.log(e.target)
+    const jsMainMenuEmployeeSubUl = document.querySelector('.jsMainMenuEmployeeSubUl');
+    if (jsMainMenuEmployeeSubUl.classList.contains('display-none')) {
+        jsMainMenuEmployeeSubUl.classList.remove('display-none')
+    } else {
+        jsMainMenuEmployeeSubUl.classList.toggle('submenu-animate-open')
+        jsMainMenuEmployeeSubUl.classList.toggle('submenu-animate-close')
+    }
 }
 
 async function clickMainMenuNewEmployee() {
